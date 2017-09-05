@@ -1,0 +1,33 @@
+<story>
+	<composer id="weapon">
+		<option>meathook</option>
+		<option>rusty shank</option>
+		<option>laser cannon</option>
+		<option>katana</option>
+		<option>chunk of uranium</option>
+		<option>salmon</option>
+		<option>hand grenade</option>
+		<option>lightsaber</option>
+		<option>brick</option>
+		<option>broadsword</option>
+		<option>taser</option>
+		<option>copper pipe</option>
+		<option>paper towel roll</option>
+		<option>spiked mace</option>
+		<option>pitchfork</option>
+		<option>butterfly knife</option>
+		<option>pool noodle</option>
+		<option>wrench</option>
+		<option>wood chipper</option>
+		<option>rubber chicken</option>
+		<option>peg leg</option>
+		<option>sock filled with pebbles</option>
+		<option>shard of glass</option>
+		<option>{range:1-9}-dimensional {weapon}</option>
+		<option>pronged {weapon}</option>
+		<option>nuclear {weapon}</option>
+		<option>bejewled {weapon}</option>
+		<option>back-talking {weapon}</option>
+		<option>{adj} {weapon}</option>
+	</composer>
+</story>
