@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700|Fondamento');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700|Playfair+Display+SC');
 
 body {
 	font-family: 'Open Sans';
 }
 
 .header {
-	font-family: 'Fondamento';
+	font-family: 'Playfair Display SC';
 }
 
 .btn {
