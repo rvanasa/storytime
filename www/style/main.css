@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700|Fondamento');
+
+body {
+	font-family: 'Open Sans';
+}
+
+.header {
+	font-family: 'Fondamento';
+}
+
+.btn {
+	cursor: pointer;
+	border: 2px solid #666;
+	white-space: pre-wrap;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+.msg-quotes {
+	font-weight: bold;
+	margin: 10px;
+	display: block;
+}
+
+.msg-occurrence {
+	color: #888;
+}
+
+.msg-bold {
+	font-weight: bold;
+}
+
+.msg-italics {
+	font-style: italic;
+}
+
+.msg-uppercase {
+	text-transform: uppercase;
+}
