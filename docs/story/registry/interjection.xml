@@ -1,0 +1,30 @@
+<story>
+	<composer id="int">
+		<option>Wow!</option>
+		<option>Dude.</option>
+		<option>Crikey...</option>
+		<option>Eureka!</option>
+		<option>Oh snap.</option>
+		<option>K.</option>
+		<option>Oh.</option>
+		<option>Blammy wham!</option>
+		<option>Ouch.</option>
+		<option>Ouch!</option>
+		<option>Sup!</option>
+		<option>Gnarly.</option>
+		<option>Gnarly!</option>
+		<option>Tubular!</option>
+		<option>Touché.</option>
+		<option>Touché!</option>
+		<option>Olé.</option>
+		<option>Olé!</option>
+		<option>Heh.</option>
+		<option>Hehehe.</option>
+		<option>Har har!</option>
+		<option>Whaat.</option>
+		<option>Guurl.</option>
+		<option>Bravo!</option>
+		<option>...</option>
+		<option>{int} {int}</option>
+	</composer>
+</story>
