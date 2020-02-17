@@ -35,21 +35,24 @@ module.exports = function StoryService($http, Util, Storage, XmlContextService)
 						}
 						else
 						{
-							this.event = context.findEvent(ref);
-							if(this.event.scene)
+							var event = context.findEvent(ref);
+							if(event.assignments)
 							{
-								this.eventStack.unshift(this.event);
+								for(var id in event.assignments)
+								{
+									context.assign(id, event.assignments[id]);
+								}
+							}
+							event.visited = true;
+
+							this.event = event;
+							if(event.scene)
+							{
+								this.eventStack.unshift(event);
 							}
 							else
 							{
-								if(this.event.assignments)
-								{
-									for(var id in this.event.assignments)
-									{
-										context.assign(id, this.event.assignments[id]);
-									}
-								}
-								this.eventStack[0] = this.event;
+								this.eventStack[0] = event;
 							}
 						}
 					},

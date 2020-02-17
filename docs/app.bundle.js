@@ -239,6 +239,48 @@
 					$ctrl.travel(path);
 				});
 			}
+			
+			window.GRAPH = function() {
+				$(document.body).append('<script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js">');
+				setTimeout(() => {
+					var container = $('.path-graph')[0] || $('<div class="path-graph">').appendTo(document.body)[0];
+					container.style.width = '100vw';
+					container.style.height = '100vh';
+					var data = {
+						nodes: Object.values($ctrl.story.context.events).map(e => ({id: e.id, label: e.id, color: {
+							background: $ctrl.story.event == e ? '#DDFFBB' : (e.visited ? '#FFFFFF' : null),
+						}})),
+						edges: Object.values($ctrl.story.context.events)
+							.flatMap(e => e.paths.flatMap(p => (p.ref || '').split(',')).map(r => ({from: e.id, to: r}))),
+					};
+					var network = new window.vis.Network(container, data, {
+						layout: {
+							improvedLayout: true,
+							hierarchical: {
+								direction: 'LR',
+								nodeSpacing: 80,
+								levelSeparation: 100,
+							},
+						},
+						edges: {
+							arrows: {
+								to: { enabled: true, scaleFactor: 1, type: "arrow" },
+							},
+						},
+						physics: {
+							enabled: false,
+						},
+					});
+	
+				}, 100);			
+			}
+			
+			setTimeout(() => {
+				console.log('== DEBUG TOOLS ==');
+				console.log('Story object: `STORY`');
+				console.log('Event graph: `GRAPH()`');
+				console.log('Travel to event: `TRAVEL(key)`');
+			}, 1000);
 		}
 	};
 
@@ -246,7 +288,7 @@
 /* 8 */
 /***/ (function(module, exports) {
 
-	module.exports = "<div class=\"text-center\">\r\n    <div class=\"jumbotron\" ng-style=\"{background:'hsl(' + $ctrl.story.context.scope['ui:hue'] + ', 20%, 90%)'}\">\r\n        <h1 class=\"display-3 text-center header\" ng-bind=\"$ctrl.display('{ui:title}')\"></h1>\r\n        <p class=\"text-muted lead subheader\" ng-bind=\"$ctrl.display('{ui:subtitle}')\"></p>\r\n        <a class=\"small pt-3\" ng-click=\"$ctrl.reset()\" href=\"\">Create new story</a>\r\n    </div>\r\n    <div class=\"container pb-5\">\r\n    \t<p class=\"text-center py-5\" ng-bind-html=\"$ctrl.display($ctrl.story.event.text)\"></p>\r\n        <div ng-repeat=\"path in $ctrl.story.event.paths\" ng-if=\"!path.condition || path.condition()\">\r\n            <div class=\"btn d-block py-3 mt-3 mx-5\" ng-class=\"{'text-muted':path.traveled}\" ng-style=\"{background:'hsl(' + $ctrl.story.context.scope['ui:hue'] + ', 20%, 90%)'}\" ng-bind-html=\"$ctrl.display(path.text)\" ng-click=\"$ctrl.travel(path)\"></div>\r\n        </div>\r\n    </div>\r\n</div>";
+	module.exports = "<div class=\"text-center\">\r\n    <div class=\"jumbotron\" ng-style=\"{background:'hsl(' + $ctrl.story.context.scope['ui:hue'] + ', 20%, 90%)'}\">\r\n        <h1 class=\"display-3 text-center header\" ng-bind=\"$ctrl.display('{ui:title}')\"></h1>\r\n        <p class=\"text-muted lead subheader\" ng-bind=\"$ctrl.display('{ui:subtitle}')\"></p>\r\n        <a class=\"small pt-3\" ng-click=\"$ctrl.reset()\" href=\"\">Create new story</a>\r\n    </div>\r\n    <div class=\"container pb-5\">\r\n    \t<p class=\"text-center py-5\" ng-bind-html=\"$ctrl.display($ctrl.story.event.text)\"></p>\r\n        <div ng-repeat=\"path in $ctrl.story.event.paths\" ng-if=\"!path.condition || path.condition()\">\r\n            <div class=\"btn d-block py-3 mt-3 mx-5\" ng-class=\"{'text-muted':path.traveled}\" ng-style=\"{background:'hsl(' + $ctrl.story.context.scope['ui:hue'] + ', 20%, 90%)'}\" ng-bind-html=\"$ctrl.display(path.text)\" ng-click=\"$ctrl.travel(path)\"></div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 /* 9 */
@@ -363,21 +405,24 @@
 							}
 							else
 							{
-								this.event = context.findEvent(ref);
-								if(this.event.scene)
+								var event = context.findEvent(ref);
+								if(event.assignments)
 								{
-									this.eventStack.unshift(this.event);
+									for(var id in event.assignments)
+									{
+										context.assign(id, event.assignments[id]);
+									}
+								}
+								event.visited = true;
+	
+								this.event = event;
+								if(event.scene)
+								{
+									this.eventStack.unshift(event);
 								}
 								else
 								{
-									if(this.event.assignments)
-									{
-										for(var id in this.event.assignments)
-										{
-											context.assign(id, this.event.assignments[id]);
-										}
-									}
-									this.eventStack[0] = this.event;
+									this.eventStack[0] = event;
 								}
 							}
 						},
@@ -654,7 +699,7 @@
 				},
 				assign(id, value)
 				{
-					this.scope[id] = Parser.parse(value, this); /// parse or leave?
+					this.scope[id] = Parser.parse(value, this);
 				},
 			};
 		}

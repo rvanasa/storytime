@@ -85,7 +85,7 @@ module.exports = function Context(Parser, RangeComposer)
 			},
 			assign(id, value)
 			{
-				this.scope[id] = Parser.parse(value, this); /// parse or leave?
+				this.scope[id] = Parser.parse(value, this);
 			},
 		};
 	}

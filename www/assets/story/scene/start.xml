@@ -178,6 +178,10 @@
 		<path ref="nomadLeave">It's getting late...you should probably be home soon. Oh wait....</path>
 		<path ref="cry">Cry</path>
 	</event>
+	<event id="nomadReadyLeave">
+		<show>"Fair enough."</show>
+		<path ref="nomadLeave">Yeah.</path>
+	</event>
 	<event id="nomadLeave">
 		<show>The nomads walk away.</show>
 		<path ref="settlement">Drag yourself to the nearest city</path>
@@ -664,18 +668,18 @@
 	</event>
 	<event id="businessVenture">
 		<show>"Ah. Yes, perhaps we could do with an accountant."</show>
-		<path ref="2">Nothing against accountants, but are there any other options?</path>
-		<path ref="3">Sounds good!</path>
+		<path ref="businessVenture2">Nothing against accountants, but are there any other options?</path>
+		<path ref="businessVenture3">Sounds good!</path>
 	</event>
 	<event id="businessVenture2">
 		<show>"No."</show>
-		<path ref="3">Dang.</path>
+		<path ref="businessVenture3">Dang.</path>
 	</event>
 	<event id="businessVenture3">
 		<show>The noblemen lead you to their carriage, pushing some crates out of the way to give you a place to seat yourself.</show>
-		<path ref="4">Smirk sleazily</path>
-		<path ref="4">Smirk uncomfortably</path>
-		<path ref="4">Look onward dutifully</path>
+		<path ref="businessVenture4">Smirk sleazily</path>
+		<path ref="businessVenture4">Smirk uncomfortably</path>
+		<path ref="businessVenture4">Look onward dutifully</path>
 	</event>
 	<event id="catCult">
 		<show>Squeezing between two {adj} ladies and a quite {adj} grump, you step forward and announce your presence to the old man.</show>
