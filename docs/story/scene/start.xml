@@ -9,6 +9,7 @@
 		<path ref="ready">I'm ready to do what I came for.</path>
 	</event>
 	<event id="die">
+		<assign key="trait:died" value="true" />
 		<show><h3>You died.</h3></show>
 		<path ref="start">Fair enough.</path>
 		<path ref="start">I know I made my mistakes, but I'm ready to start a new life for myself.</path>
@@ -68,7 +69,12 @@
 	<event id="ready">
 		<show>You contemplate the situation.</show>
 		<path ref="steed">Let's do this the old-fashioned way.</path>
-		<path ref="bird">Hey look, a bird.</path>
+		<if key="trait:died">
+			<path ref="birdRecognize">Hey look, a bird.</path>
+		</if>
+		<else>
+			<path ref="bird">Hey look, a bird.</path>
+		</else>
 	</event>
 	<event id="steed">
 		<show>You mount your steed and gallop onward.</show>
@@ -77,6 +83,9 @@
 	</event>
 	<event id="steed2">
 		<show>Giddy up {char:steed}!</show>
+		<if key="trait:died">
+			<path ref="road">To the road!</path>
+		</if>
 		<path ref="steed3">Why did I name my {steed:main} {char:steed}?</path>
 	</event>
 	<event id="steed3">
@@ -105,6 +114,9 @@
 	</event>
 	<event id="steedKick">
 		<show>"{int:steed}" The {steed:main} suddenly bucks you off, and you faceplant into the dusty road.</show>
+		<if key="trait:died">
+			<path ref="road">Walk it off</path>
+		</if>
 		<path ref="help">I think my neck is broken.</path>
 		<path ref="help">Regardless of whether my neck is broken, I still need help.</path>
 		<path ref="steedChange">I don't like this whole '{steed:main}' thing. I'm more of a {steed:next} person.</path>
@@ -300,7 +312,7 @@
 	<event id="run2">
 		<show>You trip and fall, breaking half the bones in your body.</show>
 		<path ref="help">Call for help</path>
-		<path ref="run">Get up and keep running</path>
+		<path ref="run4">Get up and keep running</path>
 	</event>
 	<event id="run3">
 		<show>You're starting to get tired.</show>
@@ -317,6 +329,18 @@
 		<path ref="road">Walk instead</path>
 		<path ref="die">I'd rather just die</path>
 	</event>
+	<event id="bird">
+		<show>~ The bird seems to be carrying a note ~</show>
+		<path ref="callBird">Call to the bird</path>
+		<path ref="shootBird">Shoot down the bird</path>
+		<path ref="birdLeave">Do nothing</path>
+	</event>
+	<event id="birdRecognize">
+		<show>~ The bird seems to recognize you ~</show>
+		<path ref="birdAttack">Hand it over!</path>
+		<path ref="shootBird">Shoot the bird</path>
+		<path ref="run">Run</path>
+	</event>
 	<event id="birdLeave">
 		<show>~ The bird flies away ~</show>
 		<path ref="birdLeave2">Chase after the bird</path>
@@ -330,12 +354,6 @@
 		<show>You climb tentatively onto the back of {char:steed}.</show>
 		<path ref="steed3">Wait, who names their {steed:main} {char:steed}?</path>
 	</event>
-	<event id="bird">
-		<show>~ The bird seems to be carrying a note ~</show>
-		<path ref="callBird">Call to the bird</path>
-		<path ref="shootBird">Shoot down the bird</path>
-		<path ref="birdLeave">Do nothing</path>
-	</event>
 	<event id="callBird">
 		<show>The bird doesn't respond, because it's a bird.</show>
 		<path ref="callBird2">Call to the the bird again</path>
@@ -343,10 +361,10 @@
 	</event>
 	<event id="callBird2">
 		<show>"What do you want?" it replies, with an angry look.</show>
-		<path ref="birdGiveNote">I'd like to read that note, please.</path>
+		<path ref="callBird3">I'd like to read that note, please.</path>
 		<path ref="birdAttack">Give me that note or else I'll destroy you and everything you love.</path>
 	</event>
-	<event id="birdGiveNote">
+	<event id="callBird3">
 		<show>"Since you asked so politely, you may read it," the bird declared in a {adj:birdVoice} voice.</show>
 		<path ref="angryBird">Why is your voice so {adj:birdVoice}?</path>
 		<path ref="readNote">Read the note</path>
@@ -357,7 +375,7 @@
 		<path ref="readNote">Yeah, you're right. Can I see that note?</path>
 	</event>
 	<event id="birdAttack">
-		<show>~ The bird stabs your eyes out and flaps off with your spleen ~</show>
+		<show>~ The bird pecks your eyes out and flaps off with your spleen ~</show>
 		<path ref="die">Well, shucks.</path>
 	</event>
 	<event id="shootBird">
@@ -403,7 +421,7 @@
 		<path ref="*">Continue</path>
 	</event>
 	<event id="killEyes">
-		<show>Your eyes have burst into flames and now you can't see.</show>
+		<show>Your eyes burst into flames and now you can't see.</show>
 		<path ref="cry">Cry</path>
 		<path ref="die">Die</path>
 	</event>
@@ -434,16 +452,30 @@
 	</event>
 	<event id="sleep">
 		<show>You drift into restless sleep.</show>
-		<path ref="wakeUp">Finally!</path>
+		<path ref="wakeUp,wakeUp,wakeUp,wakeUpSmoke">Finally!</path>
+	</event>
+	<event id="dieSleep">
+		<show>You never wake up again.</show>
+		<path ref="die">Shucks.</path>
 	</event>
 	<event id="wakeUp">
 		<show>Good morning, {loc:main}!</show>
 		<path ref="*">Stretch and yawn</path>
 	</event>
+	<event id="wakeUpSmoke">
+		<show>You wake up and sniff the air. Something is afoot.</show>
+		<path ref="dieSleep">Go back to sleep</path>
+		<path ref="wakeUpSmoke2">Look around</path>
+	</event>
+	<event id="wakeUpSmoke2">
+		<show>A small spacecraft has crashed nearby. Judging by the wreckage, it's a miracle you slept through the impact.</show>
+		<path ref="spaceship2">Approach the ship</path>
+		<path ref="road">Leave</path>
+	</event>
 	<event id="traveler">
 		<if key="trait:cruel">
 			<show>You happen across another traveler, but he runs away upon seeing you.</show>
-			<path ref="traveler2">Good for him.</path>
+			<path ref="road2">Good for him.</path>
 		</if>
 		<else>
 			<show>You happen across another traveler.</show>
@@ -484,7 +516,8 @@
 	<event id="murderTraveler">
 		<assign key="trait:cruel" value="true" />
 		<show>The traveler dies with an agonizing, {adj} shriek.</show>
-		<path ref="road">Now I just feel {adj:dislike}.</path>
+		<path ref="road">Serves him right.</path>
+		<path ref="road">I feel kind of bad.</path>
 	</event>
 	<event id="signpost">
 		<assign key="town:main" value="{town}" />
@@ -548,7 +581,7 @@
 	<event id="settlement">
 		<show>
 			As you approach the settlement, a sign comes into view:
-			<div class="card p-2 m-5">
+			<div class="card p-2 mt-5">
 				<h4>{town:main}</h4>
 				<p>{motto:main}</p>
 			</div>
@@ -707,12 +740,17 @@
 	<event id="catCult4">
 		<show>A mischevious teenager smirks from the sidelines. "He only pretended to believe in you so people would give him money."</show>
 		<path ref="catCult5">Heresy! Become smitten!</path>
-		<path ref="catCult5">Eh, I'll spare you if you help me out.</path>
+		<path ref="catCultHelp">Eh, I'll spare you if you help me out.</path>
+	</event>
+	<event id="catCultHelp">
+		<show>He takes advantage of your hesitation and dives headfirst into the crowd of onlookers.</show>
+		<path ref="catCult7">Strike him down</path>
+		<path ref="run">Peace out of here</path>
 	</event>
 	<event id="catCult5">
 		<show>A bolt of lightning strikes the gallows, spraying the crowd with sharp chips of wood. The old man looks up, stares for a second, and jumps to his feet. "Forget my old life, I'm rolling with Cat-Jesus now!"</show>
-		<path ref="catCult7">Eh, what's a god without his devotee.</path>
-		<path ref="catCult6">Not so fast, unbeliever.</path>
+		<path ref="catCult6">Eh, what's a god without his devotee.</path>
+		<path ref="catCult7">Not so fast, unbeliever.</path>
 	</event>
 	<event id="catCult6">
 		<assign key="char:sidekick" value="Cat-Cult Elder" />
@@ -721,7 +759,8 @@
 		<path ref="catCult7">You can be my sidekick...IN THE AFTERLIFE!</path>
 	</event>
 	<event id="catCult7">
-		<show>The man disappears in a spark of bright embers, and you're left surrounded by a crowd of apprehensive onlookers. They start muttering to one another saying things like, "Cat-Jesus is all talk, no stock. Let's take him down! He can't win if we swarm him with our {adj} mass of humanity."</show>
+		<assign key="char:sidekick" value="Ghost of the {char:sidekick}" />
+		<show>He disappears in a spark of bright embers, and you're left surrounded by a crowd of apprehensive onlookers. They start muttering to one another saying things like, "Cat-Jesus is all talk, no stock. Let's take him down! He can't win if we swarm him with our {adj} mass of humanity."</show>
 		<path ref="run">Agree</path>
 		<path ref="die">Disagree</path>
 	</event>
@@ -752,24 +791,24 @@
 		<path ref="settlement">Go back into town</path>
 	</event>
 	<event id="spaceship2">
+		<assign key="weapon:spaceship" value="{weapon}" />
 		<show>You step closer and look inside the cockpit. You see a folded piece of paper and a {weapon:spaceship}.</show>
 		<path ref="spaceship3">Read note</path>
-		<path ref="getSpaceshipWeapon">Pick up {weapon:spaceship}</path>
+		<path ref="getSpaceshipWeapon">Pick up the {weapon:spaceship}</path>
 	</event>
 	<event id="getSpaceshipWeapon">
 		<assign key="weapon:main" value="{weapon:spaceship}" />
-		<show>You picked up the {weapon:spaceship}.</show>
+		<show>You heft your new {weapon:spaceship}.</show>
 		<path ref="spaceship3">Read the note</path>
 	</event>
 	<event id="spaceship3">
 		<show>
-			You see this scrawled on the paper:
-			<div class="card text-left px-2 py-5">{char:main}, you are our only hope. <br /> Please use this spaceship and meet us at this Intergalactic Coordinate Point: <br />
+			<div class="card text-left p-5">{char:main}, you are our only hope. <br /> Please use this spaceship and meet us at this Intergalactic Coordinate Point: <br />
 			23532.1355.134 15555.1746.9516 <br /><br />
 			P.S. We can help you find {char:nemesis}.</div>
 		</show>
-		<path ref="spaceship4">Take the spaceship</path>
-		<path ref="enterSettlement">Return to town and pretend this never happened</path>
+		<path ref="spaceship4">Board the spaceship</path>
+		<path ref="road">Walk away and pretend this never happened</path>
 	</event>
 	<event id="spaceship4">
 		<show>You climb into the cockpit and realize you don't have the slightest clue what you're doing.</show>
@@ -834,7 +873,7 @@
 		<path ref="spaceship11">Go to space, obviously.</path>
 	</event>
 	<event id="spaceship11">
-		<show>You activate the Jupiter Guidance System and the spaceship points towards the Intergalactic Coordinate Point. The cockpit display says _hyperspace driving charging_. 
+		<show>You activate the Jupiter Guidance System and the spaceship points towards the Intergalactic Coordinate Point. The cockpit display says _hyperspace drive charging_. 
 		After a few moments, the spaceship suddenly accelerates rapidly.</show>
 		<path ref="spaceship12">I may have peed myself a bit.</path>
 	</event>
@@ -1084,6 +1123,7 @@
 	</event>
 	<event id="settlementAttack4">
 		<show>~ The man runs away ~</show>
+		<path ref="run">Chase him down</path>
 		<path ref="settlementAttack5">Let's start by torching that {adj:vehicle} vehicle.</path>
 		<path ref="settlementAttack8">Burn it all!</path>
 	</event>
