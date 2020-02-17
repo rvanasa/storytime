@@ -1,6 +1,6 @@
 var express = require('express');
 
-module.exports = function(App, Config, AuthMiddleware)
+module.exports = function(App)
 {
 	App.use(AuthMiddleware);
 	

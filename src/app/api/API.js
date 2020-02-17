@@ -8,6 +8,4 @@ module.exports = function(App, LogMiddleware)
 	
 	router.use(LogMiddleware);
 	
-	// router.get('/stock/:symbol', x.invoke(StockService, 'getStockInfo', x.param('symbol')).json());
-	
 }
