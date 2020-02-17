@@ -82,14 +82,13 @@ module.exports = function XmlContextService($http, $q, Util, Parser)
 			if(tag === 'if')
 			{
 				var key = e.getAttribute('key');
-				var value = e.getAttribute('value') || '';
+				var value = e.getAttribute('value');
 				var invert = e.hasAttribute('invert');
-				if(e.hasAttribute('value'))
-				{
-					invert = !invert;
-				}
-				ifCondition = () => ((context.exists(key) ? context.get(key) : '') == Parser.parse(value, context)) === invert;
-				return crawlEvent($(e), event, context, ifCondition);
+				
+				var cond = ifCondition = () => (value != null
+						? (context.exists(key) ? context.get(key) : '') == Parser.parse(value, context)
+						: context.exists(key) && !!context.get(key)) != invert;
+				return crawlEvent($(e), event, context, cond);
 			}
 			else if(tag === 'else')
 			{
@@ -97,11 +96,10 @@ module.exports = function XmlContextService($http, $q, Util, Parser)
 				{
 					throw new Error('Invalid `else` positioning');
 				}
-				condition = ifCondition;
+				var cond = ifCondition;
 				ifCondition = null;
-				return crawlEvent($(e), event, context, () => !condition());
+				return crawlEvent($(e), event, context, () => !cond());
 			}
-			ifCondition = null;
 			if(tag === 'show')
 			{
 				event.text = parseText(e.innerHTML, context);

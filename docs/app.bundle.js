@@ -195,7 +195,7 @@
 
 	module.exports = {
 		template: __webpack_require__(8),
-		controller($sce, $window, Parser, StoryService, Context)
+		controller($scope, $sce, Parser, StoryService, Context)
 		{
 			var $ctrl = this;
 			
@@ -233,6 +233,12 @@
 				cache = {};
 				StoryService.reset($ctrl.story);
 			}
+			
+			window.TRAVEL = function(path) {
+				$scope.$apply(function() {
+					$ctrl.travel(path);
+				});
+			}
 		}
 	};
 
@@ -240,7 +246,7 @@
 /* 8 */
 /***/ (function(module, exports) {
 
-	module.exports = "<div class=\"text-center\">\r\n    <div class=\"jumbotron\" ng-style=\"{background:'hsl(' + $ctrl.story.context.scope['ui:hue'] + ', 20%, 90%)'}\">\r\n        <h1 class=\"display-3 text-center header\" ng-bind=\"$ctrl.display('{ui:title}')\"></h1>\r\n        <p class=\"text-muted lead\" ng-bind=\"$ctrl.display('{ui:subtitle}')\"></p>\r\n        <a class=\"small pt-3\" ng-click=\"$ctrl.reset()\" href=\"\">Create new story</a>\r\n    </div>\r\n    <div class=\"container pb-5\">\r\n    \t<p class=\"text-center py-5\" ng-bind-html=\"$ctrl.display($ctrl.story.event.text)\"></p>\r\n        <div ng-repeat=\"path in $ctrl.story.event.paths\" ng-if=\"!$ctrl.path.condition || $ctrl.path.condition()\">\r\n            <div class=\"btn d-block py-3 mt-3 mx-5\" ng-class=\"{'text-muted':path.traveled}\" ng-style=\"{background:'hsl(' + $ctrl.story.context.scope['ui:hue'] + ', 20%, 90%)'}\" ng-bind-html=\"$ctrl.display(path.text)\" ng-click=\"$ctrl.travel(path)\"></div>\r\n        </div>\r\n    </div>\r\n</div>";
+	module.exports = "<div class=\"text-center\">\r\n    <div class=\"jumbotron\" ng-style=\"{background:'hsl(' + $ctrl.story.context.scope['ui:hue'] + ', 20%, 90%)'}\">\r\n        <h1 class=\"display-3 text-center header\" ng-bind=\"$ctrl.display('{ui:title}')\"></h1>\r\n        <p class=\"text-muted lead\" ng-bind=\"$ctrl.display('{ui:subtitle}')\"></p>\r\n        <a class=\"small pt-3\" ng-click=\"$ctrl.reset()\" href=\"\">Create new story</a>\r\n    </div>\r\n    <div class=\"container pb-5\">\r\n    \t<p class=\"text-center py-5\" ng-bind-html=\"$ctrl.display($ctrl.story.event.text)\"></p>\r\n        <div ng-repeat=\"path in $ctrl.story.event.paths\" ng-if=\"!path.condition || path.condition()\">\r\n            <div class=\"btn d-block py-3 mt-3 mx-5\" ng-class=\"{'text-muted':path.traveled}\" ng-style=\"{background:'hsl(' + $ctrl.story.context.scope['ui:hue'] + ', 20%, 90%)'}\" ng-bind-html=\"$ctrl.display(path.text)\" ng-click=\"$ctrl.travel(path)\"></div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 9 */
@@ -334,12 +340,22 @@
 						step: 0,
 						travel(path)
 						{
-							path.traveled = true;
 							// context.assign('visit:' + path.ref, this.step);
 							this.step++;
 							
 							// var ref = Array.isArray(path.ref) ? Util.pick(path.ref) : path.ref;
-							var ref = Util.pick(path.ref.split(','));
+							
+							var ref;
+							if(typeof path === 'string')
+							{
+								ref = path;
+							}
+							else
+							{
+								path.traveled = true;
+								ref = Util.pick(path.ref.split(','));
+							}
+							
 							if(ref == '*')
 							{
 								this.eventStack.shift();
@@ -354,7 +370,6 @@
 								}
 								else
 								{
-									this.eventStack[0] = this.event;
 									if(this.event.assignments)
 									{
 										for(var id in this.event.assignments)
@@ -362,6 +377,7 @@
 											context.assign(id, this.event.assignments[id]);
 										}
 									}
+									this.eventStack[0] = this.event;
 								}
 							}
 						},
@@ -478,14 +494,13 @@
 				if(tag === 'if')
 				{
 					var key = e.getAttribute('key');
-					var value = e.getAttribute('value') || '';
+					var value = e.getAttribute('value');
 					var invert = e.hasAttribute('invert');
-					if(e.hasAttribute('value'))
-					{
-						invert = !invert;
-					}
-					ifCondition = () => ((context.exists(key) ? context.get(key) : '') == Parser.parse(value, context)) === invert;
-					return crawlEvent($(e), event, context, ifCondition);
+					
+					var cond = ifCondition = () => (value != null
+							? (context.exists(key) ? context.get(key) : '') == Parser.parse(value, context)
+							: context.exists(key) && !!context.get(key)) != invert;
+					return crawlEvent($(e), event, context, cond);
 				}
 				else if(tag === 'else')
 				{
@@ -493,11 +508,10 @@
 					{
 						throw new Error('Invalid `else` positioning');
 					}
-					condition = ifCondition;
+					var cond = ifCondition;
 					ifCondition = null;
-					return crawlEvent($(e), event, context, () => !condition());
+					return crawlEvent($(e), event, context, () => !cond());
 				}
-				ifCondition = null;
 				if(tag === 'show')
 				{
 					event.text = parseText(e.innerHTML, context);

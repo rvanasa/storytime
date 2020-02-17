@@ -1,11 +1,19 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700|Playfair+Display+SC');
 
+@media screen and (max-width: 600px) {
+  .header {
+    font-size: 48px;
+  }
+}
+
 body {
 	font-family: 'Open Sans';
+	overflow-x: hidden;
 }
 
 .header {
 	font-family: 'Playfair Display SC';
+	opacity: .8;
 }
 
 .btn {

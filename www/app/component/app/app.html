@@ -6,7 +6,7 @@
     </div>
     <div class="container pb-5">
     	<p class="text-center py-5" ng-bind-html="$ctrl.display($ctrl.story.event.text)"></p>
-        <div ng-repeat="path in $ctrl.story.event.paths" ng-if="!$ctrl.path.condition || $ctrl.path.condition()">
+        <div ng-repeat="path in $ctrl.story.event.paths" ng-if="!path.condition || path.condition()">
             <div class="btn d-block py-3 mt-3 mx-5" ng-class="{'text-muted':path.traveled}" ng-style="{background:'hsl(' + $ctrl.story.context.scope['ui:hue'] + ', 20%, 90%)'}" ng-bind-html="$ctrl.display(path.text)" ng-click="$ctrl.travel(path)"></div>
         </div>
     </div>

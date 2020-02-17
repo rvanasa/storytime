@@ -1,6 +1,6 @@
 module.exports = {
 	template: require('./app.html'),
-	controller($sce, $window, Parser, StoryService, Context)
+	controller($scope, $sce, Parser, StoryService, Context)
 	{
 		var $ctrl = this;
 		
@@ -37,6 +37,12 @@ module.exports = {
 		{
 			cache = {};
 			StoryService.reset($ctrl.story);
+		}
+		
+		window.TRAVEL = function(path) {
+			$scope.$apply(function() {
+				$ctrl.travel(path);
+			});
 		}
 	}
 };

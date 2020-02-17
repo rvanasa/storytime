@@ -12,12 +12,22 @@ module.exports = function StoryService($http, Util, Storage, XmlContextService)
 					step: 0,
 					travel(path)
 					{
-						path.traveled = true;
 						// context.assign('visit:' + path.ref, this.step);
 						this.step++;
 						
 						// var ref = Array.isArray(path.ref) ? Util.pick(path.ref) : path.ref;
-						var ref = Util.pick(path.ref.split(','));
+						
+						var ref;
+						if(typeof path === 'string')
+						{
+							ref = path;
+						}
+						else
+						{
+							path.traveled = true;
+							ref = Util.pick(path.ref.split(','));
+						}
+						
 						if(ref == '*')
 						{
 							this.eventStack.shift();
@@ -32,7 +42,6 @@ module.exports = function StoryService($http, Util, Storage, XmlContextService)
 							}
 							else
 							{
-								this.eventStack[0] = this.event;
 								if(this.event.assignments)
 								{
 									for(var id in this.event.assignments)
@@ -40,6 +49,7 @@ module.exports = function StoryService($http, Util, Storage, XmlContextService)
 										context.assign(id, this.event.assignments[id]);
 									}
 								}
+								this.eventStack[0] = this.event;
 							}
 						}
 					},
