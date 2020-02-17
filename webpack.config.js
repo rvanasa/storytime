@@ -7,7 +7,7 @@ var ENV = process.env.npm_lifecycle_event;
 var isBuild = ENV === 'build';
 
 var srcPath = __dirname + '/www';
-var destPath = __dirname + '/dist';
+var destPath = __dirname + '/docs';
 
 var config = {
 	entry: {
