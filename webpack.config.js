@@ -15,7 +15,7 @@ var config = {
 	},
 	output: {
 		path: destPath,
-		publicPath: '/',
+		//publicPath: '/',
 		filename: isBuild ? '[name].[hash].js' : '[name].bundle.js',
 		chunkFilename: isBuild ? '[name].[hash].js' : '[name].bundle.js',
 	},
