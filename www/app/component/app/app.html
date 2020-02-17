@@ -1,7 +1,7 @@
 <div class="text-center">
     <div class="jumbotron" ng-style="{background:'hsl(' + $ctrl.story.context.scope['ui:hue'] + ', 20%, 90%)'}">
         <h1 class="display-3 text-center header" ng-bind="$ctrl.display('{ui:title}')"></h1>
-        <p class="text-muted lead" ng-bind="$ctrl.display('{ui:subtitle}')"></p>
+        <p class="text-muted lead subheader" ng-bind="$ctrl.display('{ui:subtitle}')"></p>
         <a class="small pt-3" ng-click="$ctrl.reset()" href="">Create new story</a>
     </div>
     <div class="container pb-5">

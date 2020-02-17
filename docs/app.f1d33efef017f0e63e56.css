@@ -1,6 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700|Playfair+Display+SC);@media screen and (max-width: 600px) {
   .header {
-    font-size: 48px;
+    font-size: 32px;
+  }
+  
+  .subheader {
+    font-size: 12px;
   }
 }
 
@@ -11,7 +15,6 @@ body {
 
 .header {
 	font-family: 'Playfair Display SC';
-	opacity: .8;
 }
 
 .btn {
@@ -45,4 +48,4 @@ body {
 .msg-uppercase {
 	text-transform: uppercase;
 }
-/*# sourceMappingURL=app.ce806cc21e2586d539fe.css.map*/
+/*# sourceMappingURL=app.f1d33efef017f0e63e56.css.map*/

@@ -2,7 +2,11 @@
 
 @media screen and (max-width: 600px) {
   .header {
-    font-size: 48px;
+    font-size: 32px;
+  }
+  
+  .subheader {
+    font-size: 12px;
   }
 }
 
@@ -13,7 +17,6 @@ body {
 
 .header {
 	font-family: 'Playfair Display SC';
-	opacity: .8;
 }
 
 .btn {
