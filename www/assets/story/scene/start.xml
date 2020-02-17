@@ -24,9 +24,8 @@
 		<path ref="ready">Mope silently</path>
 	</event>
 	<event id="bunny">
-		<show>You wander far away, still blind.</show>
-		<path ref="bunnyVillage">Wipe your tears</path>
-		<path ref="bunnyTrip">Let the tears rain down like an emotion ocean</path>
+		<show>You wander far away, blind as a bat.</show>
+		<path ref="bunnyTrip">Let the tears pool around your feet</path>
 	</event>
 	<event id="bunnyVillage">
 		<show>Your tears led you to {town}: a village entirely ran by bunnies!</show>
@@ -35,10 +34,12 @@
 		<path ref="bunnyCult">Marvel at their technologies and keep looking</path>
 	</event>
 	<event id="bunnyCult">
-		<show>You see a few bunnies chanting the word in a circle around a {color} fire.</show>
+		<show>You hear a few bunnies chanting the word in a circle around a {color} fire.</show>
+		<path ref="bunnyTrip">If only I could see.</path>
 	</event>
 	<event id="bunnyTrip">
-		<show>You trip over a bunny and the dirt absorbs your tears.</show>
+		<show>You trip over a bunny and the dirt absorbs your tears. You can see again!</show>
+		<path ref="bunnyVillage">Explore the village</path>
 		<path ref="bunnyTalk">Check on the poor bunny.</path>
 		<path ref="intruder">Kick the bunny to see if it's still alive.</path>
 	</event>
@@ -102,7 +103,7 @@
 		<show>"Right now it may seem as though you've been dropped into a land devoid of meaning, of purpose, and of {adj} {steed:main}s. {int:steed} But I can assure you that one day you will understand that before you can begin {goodAct:main}, you'd better discover your true nature by {evilAct:main}."</show>
 		<path ref="steed6">Keep listening</path>
 		<path ref="steed7">Hold up. Are you asking me to start {evilAct:main}?</path>
-		<path ref="steedSidekick">It seems you are more man than {steed:main}, {char:steed}.</path>
+		<path ref="steedSidekick">Sometimes, {char:steed}, it seems you are more man than {steed:main}.</path>
 	</event>
 	<event id="steed6">
 		<show>"Yessir. Deal with it. {int:steed}"</show>
@@ -422,6 +423,9 @@
 	</event>
 	<event id="killEyes">
 		<show>Your eyes burst into flames and now you can't see.</show>
+		<if key="trait:died">
+			<path ref="bunny">I guess I'm blind now.</path>
+		</if>
 		<path ref="cry">Cry</path>
 		<path ref="die">Die</path>
 	</event>
@@ -589,7 +593,7 @@
 		<path ref="enterSettlement,enterSettlementLady">Enter {town:main}</path>
 		<path ref="road">This place seems weird; find another settlement</path>
 		<if key="char:sidekick">
-			<path ref="settlementAttack">Let's burn it down, {char:sidekick}!</path>
+			<path ref="settlementTryAttack">Let's burn it down, {char:sidekick}!</path>
 		</if>
 	</event>
 	<event id="enterSettlement">
@@ -1105,6 +1109,14 @@
 	<event id="ladyStab">
 		<show>You were stabbed by the {adj:lady} lady.</show>
 		<path ref="die">I accept my fate.</path>
+	</event>
+	<event id="settlementTryAttack">
+		<scene />
+		<show>{char:sidekick} looks at you for a full second and says, "What?"</show>
+		<if key="trait:cruel">
+			<path ref="settlementAttack">You heard me.</path>
+		</if>
+		<path ref="*">Nevermind.</path>
 	</event>
 	<event id="settlementAttack">
 		<assign key="trait:cruel" value="true" />
