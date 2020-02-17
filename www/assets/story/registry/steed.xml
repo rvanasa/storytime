@@ -1,6 +1,5 @@
 <story>
 	<composer id="steed">
-		<option>horse</option>
 		<option>bull</option>
 		<option>buffalo</option>
 		<option>donkey</option>

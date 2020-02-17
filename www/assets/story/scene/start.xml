@@ -93,6 +93,7 @@
 		<show>"Right now it may seem as though you've been dropped into a land devoid of meaning, of purpose, and of {adj} {steed:main}s. {int:steed} But I can assure you that one day you will understand that before you can begin {goodAct:main}, you'd better discover your true nature by {evilAct:main}."</show>
 		<path ref="steed6">Keep listening</path>
 		<path ref="steed7">Hold up. Are you asking me to start {evilAct:main}?</path>
+		<path ref="steedSidekick">It seems you are more man than {steed:main}, {char:steed}.</path>
 	</event>
 	<event id="steed6">
 		<show>"Yessir. Deal with it. {int:steed}"</show>
@@ -103,11 +104,16 @@
 		<path ref="steedKick">Alright, I'm getting a new {steed:main}.</path>
 	</event>
 	<event id="steedKick">
-		<show>{int:steed} The {steed:main} suddenly bucks you off, and you faceplant into the dusty road.</show>
+		<show>"{int:steed}" The {steed:main} suddenly bucks you off, and you faceplant into the dusty road.</show>
 		<path ref="help">I think my neck is broken.</path>
 		<path ref="help">Regardless of whether my neck is broken, I still need help.</path>
 		<path ref="steedChange">I don't like this whole '{steed:main}' thing. I'm more of a {steed:next} person.</path>
 		<path ref="cry">Start crying</path>
+	</event>
+	<event id="steedSidekick">
+		<assign key="char:sidekick" value="{char:steed} the {steed:main}" />
+		<show>I am honored to quest by your side, as equals.</show>
+		<path ref="steedKick">Equals? You're still my {adj:steed} steed.</path>
 	</event>
 	<event id="steedDismount">
 		<show>You dismount and glumly seat yourself on a rock.</show>
@@ -117,6 +123,9 @@
 	<event id="steedChange">
 		<assign key="steed:main" value="{steed:next}" />
 		<assign key="steed:next" value="{steed}" />
+		<assign key="char:steed" value="{char}" />
+		<assign key="adj:steed" value="{adj}" />
+		<assign key="int:steed" value="{int}" />
 		<show>~ A ripple in space-time opens a portal through which a herd of {steed:main}-like creatures descend into {loc:main} ~</show>
 		<path ref="steed">Now we're talking.</path>
 	</event>

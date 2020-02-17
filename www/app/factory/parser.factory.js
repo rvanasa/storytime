@@ -21,24 +21,22 @@ module.exports = function Parser($injector, Util)
 			{
 				return this.parse(context.findComposer(id).generate(), context);
 			}
+			if(context.exists(id))
+			{
+				return context.get(id);
+			}
+			
 			var delimIndex = id.indexOf(':');
 			var composerID = id.substring(0, delimIndex);
 			var keyID = id.substring(delimIndex + 1);
-			var value;
-			if(context.exists(id))
-			{
-				value = context.get(id);
-			}
-			else
-			{
-				var composer = context.findComposer(composerID);
-				value = this.parse(composer.generate(keyID), context);
-				// if(!composer.dynamic)
-				// {
-				// 	context.assign(id, value);
-				// }
-			}
-			return value;
+			
+			var composer = context.findComposer(composerID);
+			
+			return this.parse(composer.generate(keyID), context);
+			// if(!composer.dynamic)
+			// {
+			// 	context.assign(id, value);
+			// }
 		},
 	};
 	
