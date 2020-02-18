@@ -2,8 +2,6 @@
 
 ## [Begin a story](https://rvanasa.github.io/storytime)
 
----
-
 Storytime! is a platform for creating procedural decision-based "choose your own adventure" story sequences.
 
 All stories are, by nature, part of a common overarching universe. 
