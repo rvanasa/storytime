@@ -287,6 +287,7 @@
         <assign key="char:main" value="Cat-Jesus"/>
         <assign key="steed:main" value="cat angel"/>
         <assign key="weapon:main" value="claws"/>
+        <assign key="adj:main" value="furry"/>
         <show>"Oh yes. Ohhh, yes. Goodbye, {char:main}."</show>
         <path ref="run">Run for your life</path>
     </event>
@@ -1214,7 +1215,7 @@
         <show>After that nourishing albeit {adj} meal, you and {char:sidekick} prepare to remount and continue on your
             expedition.
         </show>
-        <path ref="excursionRide4">Consult your {adj:map} map</path>
+        <path ref="excursionRide4">Consult your {adj:main} map</path>
     </event>
     <event id="excursionRide4">
         <show>It seems as though you were traveling in the opposite direction this whole time. {char:sidekick} leans
@@ -1223,9 +1224,7 @@
         <path ref="excursionRide5">Answer evasively</path>
     </event>
     <event id="excursionRide5">
-        <show>"Well, {char:sidekick}, I have this feeling we're heading somewhere very important." {char:sidekick}
-            stares you square in the eye. "Huh?"
-        </show>
+        <show>"Well, {char:sidekick}, I have this feeling we're heading somewhere very important."</show>
         <path ref="excursionRide6">Yeah okay let's just head back.</path>
     </event>
     <event id="excursionRide6">
@@ -1235,13 +1234,17 @@
             that I'm a criminal, I'd better stick with you, {char:main}. Live the rogue life, you know?"
         </show>
         <path ref="enterSettlement">Sure thing.</path>
-        <path ref="murderSidekick">YOU TOUCHED THE ROAD! DIE!</path>
+        <path ref="murderSidekick">YOU TOUCHED THE ROAD!</path>
     </event>
     <event id="murderSidekick">
         <assign key="trait:cruel" value="true"/>
-        <assign key="char:sidekick" value=""/>
         <show>You violently stab {char:sidekick} with your {weapon:main}.</show>
-        <path ref="settlement">I'm a vigilante, b***.</path>
+        <path ref="murderSidekick2">I'm a vigilante, b***.</path>
+    </event>
+    <event id="murderSidekick2">
+        <assign key="char:sidekick" value=""/>
+        <show>You consult your {adj:main} map.</show>
+        <path ref="road">Continue onward</path>
     </event>
     <event id="packFood">
         <scene/>
