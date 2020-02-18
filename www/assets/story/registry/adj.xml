@@ -17,8 +17,10 @@
 		<option>scandalous</option>
 		<option>pretentious</option>
 		<option>smelly</option>
+		<option>stinky</option>
 		<option>slimy</option>
 		<option>slippery</option>
+		<option>yummy</option>
 		<option>bad</option>
 		<option>happy</option>
 		<option>silly</option>
@@ -35,7 +37,7 @@
 		<option>concerning</option>
 		<option>reassuring</option>
 		<option>wrinkly</option>
-		<option>poingant</option>
+		<option>poignant</option>
 		<option>sharp</option>
 		<option>spongy</option>
 		<option>greasy</option>
@@ -44,6 +46,9 @@
 		<option>unpleasant</option>
 		<option>ominous</option>
 		<option>eerie</option>
+		<option>writhing</option>
+		<option>clandestine</option>
+		<option>intense</option>
 		<option>casually {adj}</option>
 		<option>unnecessarily {adj}</option>
 		<option>questionably {adj}</option>

@@ -28,6 +28,7 @@
     "file-loader": "^0.8.4",
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.19.0",
+    "json-loader": "^0.5.7",
     "raw-loader": "^0.5.1",
     "style-loader": "^0.13.0",
     "webpack": "^1.14.0",

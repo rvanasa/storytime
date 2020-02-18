@@ -61,6 +61,9 @@ module.exports = function Context(Parser, RangeComposer)
 				}
 				this.events[event.id] = event;
 			},
+			// hasEvent(id) {
+			// 	return !!this.events[id];
+			// },
 			findEvent(id)
 			{
 				var event = this.events[id];

@@ -14,9 +14,9 @@ module.exports = function StoryService($http, Util, Storage, XmlContextService)
 					{
 						// context.assign('visit:' + path.ref, this.step);
 						this.step++;
-						
+
 						// var ref = Array.isArray(path.ref) ? Util.pick(path.ref) : path.ref;
-						
+
 						var ref;
 						if(typeof path === 'string')
 						{
@@ -27,15 +27,15 @@ module.exports = function StoryService($http, Util, Storage, XmlContextService)
 							path.traveled = true;
 							ref = Util.pick(path.ref.split(','));
 						}
-						
-						if(ref == '*')
+
+						if(ref === '*')
 						{
 							this.eventStack.shift();
 							this.event = this.eventStack[0];
 						}
 						else
 						{
-							var event = context.findEvent(ref);
+							var event = context.findEvent(ref || 'default');
 							if(event.assignments)
 							{
 								for(var id in event.assignments)
@@ -59,21 +59,21 @@ module.exports = function StoryService($http, Util, Storage, XmlContextService)
 				};
 			});
 	}
-	
+
 	this.prepare = function(story)
 	{
 		story.context.scope = Storage.load('scope') || {};
 		story.travel({ref: story.context.exists('event:save') ? story.context.get('event:save') : 'start'});
-		
+
 		console.log('Loaded scope:', story.context.scope);
 	}
-	
+
 	this.save = function(story)
 	{
 		story.context.assign('event:save', story.event.id);
 		Storage.save('scope', story.context.scope);
 	}
-	
+
 	this.reset = function(story)
 	{
 		Storage.save('scope', undefined);

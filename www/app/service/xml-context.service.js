@@ -12,7 +12,7 @@ module.exports = function XmlContextService($http, $q, Util, Parser)
 	this.parse = function(data, path, context)
 	{
 		console.log('Parsing resource: ' + path);
-		
+
 		var $data = $(data);
 		var tasks = [];
 		tasks.push(parseAll($data.children('import'), $elem =>
@@ -79,18 +79,18 @@ module.exports = function XmlContextService($http, $q, Util, Parser)
 		$elem.children().each((i, e) =>
 		{
 			var tag = e.tagName.toLowerCase();
-			if(tag === 'if')
+			if(tag === 'if' || tag === '_if')
 			{
 				var key = e.getAttribute('key');
 				var value = e.getAttribute('value');
 				var invert = e.hasAttribute('invert');
 				
-				var cond = ifCondition = () => (value != null
-						? (context.exists(key) ? context.get(key) : '') == Parser.parse(value, context)
-						: context.exists(key) && !!context.get(key)) != invert;
+				var cond = ifCondition = () => !!(value != null
+						? !!(context.exists(key) ? context.get(key) : '') === Parser.parse(value, context)
+						: context.exists(key) && !!context.get(key)) !== invert;
 				return crawlEvent($(e), event, context, cond);
 			}
-			else if(tag === 'else')
+			else if(tag === 'else' || tag === '_else')
 			{
 				if(!ifCondition)
 				{

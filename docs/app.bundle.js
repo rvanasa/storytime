@@ -384,9 +384,9 @@
 						{
 							// context.assign('visit:' + path.ref, this.step);
 							this.step++;
-							
+	
 							// var ref = Array.isArray(path.ref) ? Util.pick(path.ref) : path.ref;
-							
+	
 							var ref;
 							if(typeof path === 'string')
 							{
@@ -397,15 +397,15 @@
 								path.traveled = true;
 								ref = Util.pick(path.ref.split(','));
 							}
-							
-							if(ref == '*')
+	
+							if(ref === '*')
 							{
 								this.eventStack.shift();
 								this.event = this.eventStack[0];
 							}
 							else
 							{
-								var event = context.findEvent(ref);
+								var event = context.findEvent(ref || 'default');
 								if(event.assignments)
 								{
 									for(var id in event.assignments)
@@ -429,21 +429,21 @@
 					};
 				});
 		}
-		
+	
 		this.prepare = function(story)
 		{
 			story.context.scope = Storage.load('scope') || {};
 			story.travel({ref: story.context.exists('event:save') ? story.context.get('event:save') : 'start'});
-			
+	
 			console.log('Loaded scope:', story.context.scope);
 		}
-		
+	
 		this.save = function(story)
 		{
 			story.context.assign('event:save', story.event.id);
 			Storage.save('scope', story.context.scope);
 		}
-		
+	
 		this.reset = function(story)
 		{
 			Storage.save('scope', undefined);
@@ -469,7 +469,7 @@
 		this.parse = function(data, path, context)
 		{
 			console.log('Parsing resource: ' + path);
-			
+	
 			var $data = $(data);
 			var tasks = [];
 			tasks.push(parseAll($data.children('import'), $elem =>
@@ -536,18 +536,18 @@
 			$elem.children().each((i, e) =>
 			{
 				var tag = e.tagName.toLowerCase();
-				if(tag === 'if')
+				if(tag === 'if' || tag === '_if')
 				{
 					var key = e.getAttribute('key');
 					var value = e.getAttribute('value');
 					var invert = e.hasAttribute('invert');
 					
-					var cond = ifCondition = () => (value != null
-							? (context.exists(key) ? context.get(key) : '') == Parser.parse(value, context)
-							: context.exists(key) && !!context.get(key)) != invert;
+					var cond = ifCondition = () => !!(value != null
+							? !!(context.exists(key) ? context.get(key) : '') === Parser.parse(value, context)
+							: context.exists(key) && !!context.get(key)) !== invert;
 					return crawlEvent($(e), event, context, cond);
 				}
-				else if(tag === 'else')
+				else if(tag === 'else' || tag === '_else')
 				{
 					if(!ifCondition)
 					{
@@ -675,6 +675,9 @@
 					}
 					this.events[event.id] = event;
 				},
+				// hasEvent(id) {
+				// 	return !!this.events[id];
+				// },
 				findEvent(id)
 				{
 					var event = this.events[id];

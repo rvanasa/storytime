@@ -1,1172 +1,1454 @@
 <story>
-	<event id="start">
-		<assign key="ui:title" value="{title:main}" />
-		<assign key="ui:subtitle" value="{subtitle:main}" />
-		<assign key="ui:hue" value="{range:1-360}" />
-		<assign key="steed:main" value="horse" />
-		<show>You find yourself on a plateau overlooking {loc:main}.</show>
-		<path ref="identityCrisis">Why am I here?</path>
-		<path ref="ready">I'm ready to do what I came for.</path>
-	</event>
-	<event id="die">
-		<assign key="trait:died" value="true" />
-		<show><h3>You died.</h3></show>
-		<path ref="start">Fair enough.</path>
-		<path ref="start">I know I made my mistakes, but I'm ready to start a new life for myself.</path>
-		<path ref="start">Death is the only certainty in life.</path>
-	</event>
-	<event id="nothing">
-		<show>~ Nothing happens ~</show>
-		<path ref="*">Well, at least I tried.</path>
-	</event>
-	<event id="identityCrisis">
-		<show>Why is it always me?</show>
-		<path ref="ready">Mope silently</path>
-	</event>
-	<event id="bunny">
-		<show>You wander far away, blind as a bat.</show>
-		<path ref="bunnyTrip">Let the tears pool around your feet</path>
-	</event>
-	<event id="bunnyVillage">
-		<show>Your tears led you to {town}: a village entirely ran by bunnies!</show>
-		<path ref="bunnyElder">Where are the leaders of the land?</path>
-		<path ref="intruder">I shall colonize this {adj} bunny village!</path>
-		<path ref="bunnyCult">Marvel at their technologies and keep looking</path>
-	</event>
-	<event id="bunnyCult">
-		<show>You hear a few bunnies chanting the word in a circle around a {color} fire.</show>
-		<path ref="bunnyTrip">If only I could see.</path>
-	</event>
-	<event id="bunnyTrip">
-		<show>You trip over a bunny and the dirt absorbs your tears. You can see again!</show>
-		<path ref="bunnyVillage">Explore the village</path>
-		<path ref="bunnyTalk">Check on the poor bunny.</path>
-		<path ref="intruder">Kick the bunny to see if it's still alive.</path>
-	</event>
-	<event id="intruder">
-		<show>Dust and rock swirl in the air and the satanic God of the bunnies claims your soul for intruding the peaceful lives of these bunnies.</show>
-		<path ref="die">Learn that the moral of this story is to leave wild bunnies alone, and die.</path>
-	</event>
-	<event id="bunnyElder">
-		<show>Tis I, the great {char:bunny}.</show>
-		<path ref="intruder">Make fun of his name</path>
-		<path ref="bunnyQuest">Ask for a quest</path>
-	</event>
-	<event id="bunnyTalk">
-		<show>You pick up the bunny and it says,"Thank you, gentle soul. You are the chosen one. I have a quest, if you choose to accept it."</show>
-		<path ref="bunnyQuest">Accept the quest, no matter how weird, because you're already talking to a bunny</path>
-		<path ref="intruder">Deny the bunny by drop-kicking it</path>
-	</event>
-	<event id="bunnyQuest">
-		<show>The talking bunny gives you a {color:main} letter that reads, "Bunnies are small, no one listens to bunnies. Be our voice in the magical creature senate in {town:senate}. Go there now!"</show>
-		<path ref="bunnyWait">You get pumped, punch a wall, and listen to some badass hero music as you walk away, {adj}.</path>
-		<path ref="run">Run there as fast as you can</path>
-	</event>
-	<event id="bunnyWait">
-		<show>Wait! Don't walk like a {adj} idiot! Take our {steed:main}!</show>
-		<path ref="steed">Take the {steed:main}.</path>
-		<path ref="road">You're terrified of horses so you walk {adj:main} anyway.</path>
-	</event>
-	<event id="ready">
-		<show>You contemplate the situation.</show>
-		<path ref="steed">Let's do this the old-fashioned way.</path>
-		<if key="trait:died">
-			<path ref="birdRecognize">Hey look, a bird.</path>
-		</if>
-		<else>
-			<path ref="bird">Hey look, a bird.</path>
-		</else>
-	</event>
-	<event id="steed">
-		<show>You mount your steed and gallop onward.</show>
-		<path ref="steed2">Yeehaw.</path>
-		<path ref="steedDismount">I did't sign up for this.</path>
-	</event>
-	<event id="steed2">
-		<show>Giddy up {char:steed}!</show>
-		<if key="trait:died">
-			<path ref="road">To the road!</path>
-		</if>
-		<path ref="steed3">Why did I name my {steed:main} {char:steed}?</path>
-	</event>
-	<event id="steed3">
-		<show>{char:steed} twists his head around, grinning. "Only ask questions that you know have answers."</show>
-		<path ref="steed4">It's a philosophical {steed:main}!</path>
-		<path ref="steedKick">It's an idiot.</path>
-		<path ref="steedDismount">Forget this.</path>
-	</event>
-	<event id="steed4">
-		<show>"So you see here, kid. The world works in strange ways, and you need to be on the top of the sandwich to enjoy the slide, if you get what I'm saying. {int:steed}"</show>
-		<path ref="steed5">Keep listening</path>
-	</event>
-	<event id="steed5">
-		<show>"Right now it may seem as though you've been dropped into a land devoid of meaning, of purpose, and of {adj} {steed:main}s. {int:steed} But I can assure you that one day you will understand that before you can begin {goodAct:main}, you'd better discover your true nature by {evilAct:main}."</show>
-		<path ref="steed6">Keep listening</path>
-		<path ref="steed7">Hold up. Are you asking me to start {evilAct:main}?</path>
-		<path ref="steedSidekick">Sometimes, {char:steed}, it seems you are more man than {steed:main}.</path>
-	</event>
-	<event id="steed6">
-		<show>"Yessir. Deal with it. {int:steed}"</show>
-		<path ref="steed7">Keep listening</path>
-	</event>
-	<event id="steed7">
-		<show>"{int:steed} Before you start a garden you have to cut the weeds, and before you cut the weeds you have to be {evilAct:main}."</show>
-		<path ref="steedKick">Alright, I'm getting a new {steed:main}.</path>
-	</event>
-	<event id="steedKick">
-		<show>"{int:steed}" The {steed:main} suddenly bucks you off, and you faceplant into the dusty road.</show>
-		<if key="trait:died">
-			<path ref="road">Walk it off</path>
-		</if>
-		<path ref="help">I think my neck is broken.</path>
-		<path ref="help">Regardless of whether my neck is broken, I still need help.</path>
-		<path ref="steedChange">I don't like this whole '{steed:main}' thing. I'm more of a {steed:next} person.</path>
-		<path ref="cry">Start crying</path>
-	</event>
-	<event id="steedSidekick">
-		<assign key="char:sidekick" value="{char:steed} the {steed:main}-man" />
-		<show>I am honored to quest by your side, as equals.</show>
-		<path ref="steedKick">You're still my {adj:steed} steed.</path>
-	</event>
-	<event id="steedDismount">
-		<show>You dismount and glumly seat yourself on a rock.</show>
-		<path ref="identityCrisis">What am I doing?</path>
-		<path ref="birdLeave">Hey look, it's that bird again!</path>
-	</event>
-	<event id="steedChange">
-		<assign key="steed:main" value="{steed:next}" />
-		<assign key="steed:next" value="{steed}" />
-		<assign key="char:steed" value="{char}" />
-		<assign key="adj:steed" value="{adj}" />
-		<assign key="int:steed" value="{int}" />
-		<show>~ A ripple in space-time opens a portal through which a herd of {steed:main}-like creatures descend into {loc:main} ~</show>
-		<path ref="steed">Now we're talking.</path>
-	</event>
-	<event id="help">
-		<show>You call for help in a pitiful, {adj:helpVoice} voice.</show>
-		<path ref="help2">Keep yelling</path>
-		<path ref="die">Give up and die</path>
-		<if key="char:main" value="Cat-Jesus">
-			<path ref="heal">Heal yourself, since you're Cat-Jesus</path>
-		</if>
-	</event>
-	<event id="help2">
-		<show>Nothing yet.</show>
-		<path ref="help3">Listen for a while</path>
-		<path ref="cry">Start crying</path>
-		<path ref="help3">Yell louder and with extra {adj:helpVoice} gusto</path>
-		<path ref="die">Give up and die</path>
-	</event>
-	<event id="help3">
-		<show>You hear voices over a hill.</show>
-		<path ref="nomad,paparazzi,catJesus">Keep yelling</path>
-		<path ref="die">Give up and die</path>
-	</event>
-	<event id="heal">
-		<show>~ Ancient chanting resonates around you as your physical body is mended ~</show>
-		<path ref="road">Wander away in a trance</path>
-	</event>
-	<event id="nomad">
-		<show>It's a group of nomads! They're probably cannibals.</show>
-		<path ref="nomad2">They might not be cannibals.</path>
-		<path ref="die">Die before they eat you</path>
-	</event>
-	<event id="nomad2">
-		<show>~ The nomads stare at you for a while ~</show>
-		<path ref="nomad3">Don't eat me!</path>
-		<path ref="nomad4">Eat me, and get it over with!</path>
-	</event>
-	<event id="nomad3">
-		<show>A small child walks out of the group and pokes you with a stick.</show>
-		<path ref="nomad4">Say nothing</path>
-		<path ref="cry">Cry</path>
-	</event>
-	<event id="nomad4">
-		<show>"You're too {adj} and {adj}. Our chef {char:chef} can't deal with it."</show>
-		<path ref="nomad5">Ah.</path>
-	</event>
-	<event id="nomad5">
-		<show>A large, {adj} man steps out from behind the others. He is very tall and appears to be the leader. "Hello. My name is {char:nomad}, and I am the chieftan of our tribe. Why were you calling for help?"</show>
-		<path ref="nomadLeave">I honestly can't remember.</path>
-		<path ref="nomad6">Can you point me to the nearest village?</path>
-	</event>
-	<event id="nomad6">
-		<show>"Sure. However, there's only one village within walking distance, and that's {town:main}." The leader points eastward. "Be warned, though; they're known for {evilAct:main}."</show>
-		<path ref="nomadLeave">Alright, thanks.</path>
-		<path ref="nomad7">Why did they call it {town:main}?</path>
-	</event>
-	<event id="nomad7">
-		<show>The nomad glowers at you. "Ask too many questions and we'll eat you alive."</show>
-		<path ref="nomadLeave">It's getting late...you should probably be home soon. Oh wait....</path>
-		<path ref="cry">Cry</path>
-	</event>
-	<event id="nomadReadyLeave">
-		<show>"Fair enough."</show>
-		<path ref="nomadLeave">Yeah.</path>
-	</event>
-	<event id="nomadLeave">
-		<show>The nomads walk away.</show>
-		<path ref="settlement">Drag yourself to the nearest city</path>
-		<path ref="help">Call for more help</path>
-		<path ref="cry">Cry</path>
-	</event>
-	<event id="paparazzi">
-		<show>It's a group of paparazzi! You're screwed.</show>
-		<path ref="run">Pick up your broken body and run</path>
-		<path ref="paparazzi2">Try and negotiate</path>
-		<path ref="die">Die before they reach you</path>
-	</event>
-	<event id="paparazzi2">
-		<show>The paparazzi swarm around you, squealing and grunting in a truly {adj} manner.</show>
-		<path ref="paparazzi3">Away, fiends!</path>
-	</event>
-	<event id="paparazzi3">
-		<show>You feel your arms and legs detach as you are torn apart by the scrambling horde.</show>
-		<path ref="summonHero,nothing">Call upon {char:hero}</path>
-		<path ref="die">Succumb to your fate</path>
-	</event>
-	<event id="catJesus">
-		<show>A multitude of voices merge into one as Cat-Jesus appears over the horizon. He gazes down upon your pathetic form and hums deeply. "It seems we meet again, {char:main}."</show>
-		<path ref="catJesus2">You exist!</path>
-		<path ref="catJesus3">What do you mean by 'again'?</path>
-		<if key="char:main" value="Cat-Jesus">
-			<path ref="catJesusAlready">You again? But I'm...you...</path>
-		</if>
-	</event>
-	<event id="catJesus2">
-		<show>"Yes. Duh."</show>
-		<path ref="catJesus3">Fine. But why are you here?</path>
-		<if key="char:main" value="Cat-Jesus">
-			<path ref="catJesusAlready">But...</path>
-		</if>
-	</event>
-	<event id="catJesus3">
-		<show>Cat-Jesus gazes at you, scorching your skin and giving you a really {adj} sunburn. "You have defied me for the last time, {char:main}. Allow this curse be a lesson to you."</show>
-		<path ref="catJesus4">Wait, curse...?</path>
-		<if key="char:main" value="Cat-Jesus">
-			<path ref="catJesusAlready">But I'm already Cat-Jesus...</path>
-		</if>
-	</event>
-	<event id="catJesus4">
-		<show>"Yes, {char:main}. A curse. And a quite {adj} one at that. From this point onward, you will be the new Cat-Jesus. I will be free from this burden!"</show>
-		<if key="char:main" value="Cat-Jesus">
-			<path ref="catJesusAlready">But I'm already Cat-Jesus...</path>
-		</if>
-		<else>
-			<path ref="catJesus5">Oh please no.</path>
-		</else>
-	</event>
-	<event id="catJesus5">
-		<assign key="char:main" value="Cat-Jesus" />
-		<assign key="steed:main" value="cat angel" />
-		<assign key="weapon:main" value="tiger claws" />
-		<show>"Oh yes. Ohhh, yes. Goodbye, {char:main}."</show>
-		<path ref="run">Run for your life</path>
-	</event>
-	<event id="catJesusAlready">
-		<show>"Oh yeah. Whoops. Get out of here, {char:main}."</show>
-		<path ref="run">Scurry</path>
-	</event>
-	<event id="summonHero">
-		<scene />
-		<show>{char:hero} appears out of nowhere, bathing you in crepuscular rays of {adj} glory.</show>
-		<path ref="summonHero2">What took you so long?</path>
-		<path ref="summonHero4">Get me out of here, quick!</path>
-	</event>
-	<event id="summonHero2">
-		<show>{char:hero} stares into your soul. "Dude, I'm not your servant. I know the plot demands that you get all the attention, but we both know I'm the real hero here."</show>
-		<path ref="murderHero">Murder {char:hero}</path>
-		<path ref="playAsHero">Can I just play as you instead?</path>
-		<path ref="summonHero3">True, true.</path>
-	</event>
-	<event id="summonHero3">
-		<show>"Why did you even summon me here?"</show>
-		<path ref="summonHero4">It's complicated.</path>
-		<path ref="summonHero4">It gave the option, so I wanted to try it.</path>
-	</event>
-	<event id="summonHero4">
-		<show>"Okay. Well, I can take you to the nearest town, if that's any help to you."</show>
-		<path ref="settlement">Yes please.</path>
-		<path ref="*">Nevermind, I'll go back to whatever I was doing.</path>
-	</event>
-	<event id="murderHero">
-		<assign key="trait:cruel" value="true" />
-		<show>You promptly stab {char:hero} with your {weapon:main}.</show>
-		<path ref="identityCrisis">What have I done?</path>
-		<path ref="road">Walk away</path>
-	</event>
-	<event id="playAsHero">
-		<assign key="char:sidekick" value="{char:main}" />
-		<assign key="weapon:sidekick" value="{weapon:main}" />
-		<assign key="char:main" value="{char:hero}" />
-		<assign key="weapon:main" value="{weapon}" />
-		<assign key="char:hero" value="{char}" />
-		<assign key="weapon:hero" value="{weapon}" />
-		<show>~ You are now playing as {char:main} ~</show>
-		<path ref="start">Feels good.</path>
-	</event>
-	<event id="run">
-		<show>You run as fast as you can.</show>
-		<path ref="run2">Run faster</path>
-		<path ref="run3">Maintain your speed</path>
-	</event>
-	<event id="run2">
-		<show>You trip and fall, breaking half the bones in your body.</show>
-		<path ref="help">Call for help</path>
-		<path ref="run4">Get up and keep running</path>
-	</event>
-	<event id="run3">
-		<show>You're starting to get tired.</show>
-		<path ref="run4">Just keep going</path>
-		<path ref="run4">Take a breather</path>
-	</event>
-	<event id="run4">
-		<show>Okay. Now what?</show>
-		<path ref="run5">Run some more!</path>
-		<path ref="cry">Cry</path>
-	</event>
-	<event id="run5">
-		<show>You're getting really, really tired.</show>
-		<path ref="road">Walk instead</path>
-		<path ref="die">I'd rather just die</path>
-	</event>
-	<event id="bird">
-		<show>~ The bird seems to be carrying a note ~</show>
-		<path ref="callBird">Call to the bird</path>
-		<path ref="shootBird">Shoot down the bird</path>
-		<path ref="birdLeave">Do nothing</path>
-	</event>
-	<event id="birdRecognize">
-		<show>~ The bird seems to recognize you ~</show>
-		<path ref="birdAttack">Hand it over!</path>
-		<path ref="shootBird">Shoot the bird</path>
-		<path ref="run">Run</path>
-	</event>
-	<event id="birdLeave">
-		<show>~ The bird flies away ~</show>
-		<path ref="birdLeave2">Chase after the bird</path>
-		<path ref="identityCrisis">Oh well. Not that it matters.</path>
-	</event>
-	<event id="birdLeave2">
-		<show>You lose sight of the bird.</show>
-		<path ref="birdLeave3">Wow, if only I had something fast like a {steed:main}.</path>
-	</event>
-	<event id="birdLeave3">
-		<show>You climb tentatively onto the back of {char:steed}.</show>
-		<path ref="steed3">Wait, who names their {steed:main} {char:steed}?</path>
-	</event>
-	<event id="callBird">
-		<show>The bird doesn't respond, because it's a bird.</show>
-		<path ref="callBird2">Call to the the bird again</path>
-		<path ref="shootBird">Shoot down the bird</path>
-	</event>
-	<event id="callBird2">
-		<show>"What do you want?" it replies, with an angry look.</show>
-		<path ref="callBird3">I'd like to read that note, please.</path>
-		<path ref="birdAttack">Give me that note or else I'll destroy you and everything you love.</path>
-	</event>
-	<event id="callBird3">
-		<show>"Since you asked so politely, you may read it," the bird declared in a {adj:birdVoice} voice.</show>
-		<path ref="angryBird">Why is your voice so {adj:birdVoice}?</path>
-		<path ref="readNote">Read the note</path>
-	</event>
-	<event id="angryBird">
-		<show>"Hey! My voice is not {adj:birdVoice}! You're the one who is {adj:main}!"</show>
-		<path ref="readNote">I'm not {adj:main}! Let me see that note!</path>
-		<path ref="readNote">Yeah, you're right. Can I see that note?</path>
-	</event>
-	<event id="birdAttack">
-		<show>~ The bird pecks your eyes out and flaps off with your spleen ~</show>
-		<path ref="die">Well, shucks.</path>
-	</event>
-	<event id="shootBird">
-		<assign key="trait:cruel" value="true" />
-		<show>~ The bird plummets to the ground ~</show>
-		<path ref="birdNote">I'm a terrible person.</path>
-	</event>
-	<event id="birdNote">
-		<show>You inspect the note. It seems to be addressed from {loc:mission}.</show>
-		<path ref="readNote">Read the note</path>
-	</event>
-	<event id="readNote">
-		<show>
-			<div class="card text-left px-2 py-5">To whomstsoever reads this note:<br />
-				<br />
-				{char:nemesis} is {evilAct:main}! We need the help of someone like {char:main} to save us from this most {adj} threat!<br />
-				<br />
-				Signed,<br />
-				{char:lover}
-			</div>
-		</show>
-		<path ref="heroPose">Look up into the sun like a true hero</path>
-		<path ref="cry">Cry</path>
-	</event>
-	<event id="heroPose">
-		<show>As you look up into the sun, you hear your retinas sizzling. You feel pretty awesome though.</show>
-		<path ref="lookAway">Look away before your eyes shrivel up</path>
-		<path ref="killEyes">Keep staring like an idiot</path>
-	</event>
-	<event id="cry">
-		<scene />
-		<show>You cry.</show>
-		<path ref="cry2">Cry more</path>
-		<path ref="*">Continue</path>
-	</event>
-	<event id="cry2">
-		<show>You cry like a little baby.</show>
-		<path ref="cry3">Cry more</path>
-		<path ref="*">Continue</path>
-	</event>
-	<event id="cry3">
-		<show>You try to cry, but you have run out of tears.</show>
-		<path ref="*">Continue</path>
-	</event>
-	<event id="killEyes">
-		<show>Your eyes burst into flames and now you can't see.</show>
-		<if key="trait:died">
-			<path ref="bunny">I guess I'm blind now.</path>
-		</if>
-		<path ref="cry">Cry</path>
-		<path ref="die">Die</path>
-	</event>
-	<event id="lookAway">
-		<show>You look away, and focus on the task at hand: Stopping {char:nemesis} from {evilAct:main}.</show>
-		<path ref="settlement">Go to the nearest settlement</path>
-	</event>
-	<event id="road">
-		<show>Feeling {adj}, you walk along the {adj:road} road.</show>
-		<path ref="road2,signpost,signpost,traveler,fortuneTeller,roadsideFood">Keep walking</path>
-	</event>
-	<event id="road2">
-		<show>The {adj:road} road just keeps on going.</show>
-		<path ref="road">Keep walking</path>
-		<path ref="run">Run instead</path>
-	</event>
-	<event id="roadsideFood">
-		<scene />
-		<assign key="food:roadside" value="{food}" />
-		<show>You find some {food:roadside} by the side of the road.</show>
-		<path ref="foodPoisoning">Yum!</path>
-		<path ref="*">Pass on that.</path>
-	</event>
-	<event id="foodPoisoning">
-		<show>Your intestines let out a squeal of terror as you digest the {food:roadside}. You're going to have to take a break from the journey.</show>
-		<path ref="die">Die quickly</path>
-		<path ref="sleep">Writhe in pain for the next 3-4 hours</path>
-	</event>
-	<event id="sleep">
-		<show>You drift into restless sleep.</show>
-		<path ref="wakeUp,wakeUp,wakeUp,wakeUpSmoke">Finally!</path>
-	</event>
-	<event id="dieSleep">
-		<show>You never wake up again.</show>
-		<path ref="die">Shucks.</path>
-	</event>
-	<event id="wakeUp">
-		<show>Good morning, {loc:main}!</show>
-		<path ref="*">Stretch and yawn</path>
-	</event>
-	<event id="wakeUpSmoke">
-		<show>You wake up and sniff the air. Something is afoot.</show>
-		<path ref="dieSleep">Go back to sleep</path>
-		<path ref="wakeUpSmoke2">Look around</path>
-	</event>
-	<event id="wakeUpSmoke2">
-		<show>A small spacecraft has crashed nearby. Judging by the wreckage, it's a miracle you slept through the impact.</show>
-		<path ref="spaceship2">Approach the ship</path>
-		<path ref="road">Leave</path>
-	</event>
-	<event id="traveler">
-		<if key="trait:cruel">
-			<show>You happen across another traveler, but he runs away upon seeing you.</show>
-			<path ref="road2">Good for him.</path>
-		</if>
-		<else>
-			<show>You happen across another traveler.</show>
-			<path ref="traveler2">He seems a bit too {adj}.</path>
-			<path ref="traveler3">How's it going?</path>
-			<path ref="road">Walk away</path>
-		</else>
-	</event>
-	<event id="traveler2">
-		<show>The traveler stops and waves as you walk nearer. He seems relatively harmless, but you can't be too sure in these parts of {loc:main}.</show>
-		<path ref="traveler3">Hello, sir. What's your business around here?</path>
-	</event>
-	<event id="traveler3">
-		<show>"Good day! I'm {char:nemesis} from the {adj} town of {town}."</show>
-		<path ref="traveler4">Hold up.</path>
-	</event>
-	<event id="traveler4">
-		<show>You realize this traveler's name is identical to that of your nemesis, {char:nemesis}. Could this be a coincidence, or is an epic battle about to take place?</show>
-		<path ref="traveler5">It's a coincidence. He looks completely different.</path>
-		<path ref="traveler6">It's not a coincidence! Attack!</path>
-	</event>
-	<event id="traveler5">
-		<show>The traveler waves amicably. "I'd better be on my way. See you around!"</show>
-		<path ref="road">Continue walking</path>
-		<path ref="traveler6">He knows I'm onto him. Attack!</path>
-	</event>
-	<event id="traveler6">
-		<show>You brandish your {weapon:main} and shout curses at the traveler. His eyes grow wide with shock and he falls over. Gingerly picking himself up, he wails, "Don't hurt me! I don't know what you're talking about!"</show>
-		<path ref="road">Oh my, I'm so sorry. I thought you were someone else.</path>
-		<path ref="traveler7">Stab him with your {weapon:main}</path>
-	</event>
-	<event id="traveler7">
-		<show>"Sir, please let me live! I mean no harm!"</show>
-		<path ref="road">Farewell, then. We shall now part ways.</path>
-		<path ref="murderTraveler">Stab him with your {weapon:main}</path>
-		<path ref="summonHero">Summon {char:hero} to do your dirty work</path>
-	</event>
-	<event id="murderTraveler">
-		<assign key="trait:cruel" value="true" />
-		<show>The traveler dies with an agonizing, {adj} shriek.</show>
-		<path ref="road">Serves him right.</path>
-		<path ref="road">I feel kind of bad.</path>
-	</event>
-	<event id="signpost">
-		<assign key="town:main" value="{town}" />
-		<assign key="motto:main" value="{motto}" />
-		<show>You encounter a slightly {adj} crossroads. A nearby signpost seems to point toward a small settlement.</show>
-		<path ref="settlement">Visit the settlement</path>
-		<path ref="road">Keep walking</path>
-	</event>
-	<event id="fortuneTeller">
-		<show>A small tent appears over the hill in front of you. You wonder if someone is inside.</show>
-		<path ref="fortuneTeller2">Take a look</path>
-		<path ref="road">I've been through enough today.</path>
-	</event>
-	<event id="fortuneTeller2">
-		<show>Soft, {adj:main} music reaches your ears as you walk over to the tent.</show>
-		<path ref="fortuneTeller3">Music is good.</path>
-		<path ref="road">I'm unquestionably being set up here.</path>
-	</event>
-	<event id="fortuneTeller3">
-		<show>You open the tent flap and drop into what appears to be the home of a stereotypical fortune-teller lady.</show>
-		<path ref="fortuneTeller4">I should stay and wait for her to come back.</path>
-		<path ref="road">Nooope.</path>
-	</event>
-	<event id="fortuneTeller4">
-		<show>After a few hours, you realize she probably isn't coming back.</show>
-		<path ref="federation">Okay, now I'm getting nervous.</path>
-	</event>
-	<event id="federation">
-		<show>You take a peek outside. To your surprise, you're surrounded by alien {steed:alien} people from the Intergalactic Federation. One of them is carring a really {adj} {weapon:alien}, and judging by the expression on his face, it's got your name on it.</show>
-		<path ref="federation3">Fight!</path>
-		<path ref="federation2">Run!</path>
-		<path ref="federation4">Negotiate?</path>
-	</event>
-	<event id="federation2">
-		<show>You're surrounded. You can't just run.</show>
-		<path ref="federation3">Fight!</path>
-		<path ref="summonHero">Call upon the might of {char:hero}!</path>
-		<path ref="cry">Cry</path>
-	</event>
-	<event id="federation3">
-		<show>You size up the {steed:alien}, and on second thought you probably wouldn't stand a chance.</show>
-		<path ref="federation5">Bring it on!</path>
-		<path ref="federation4">Let's hear what they have to say first.</path>
-		<path ref="cry">Cry</path>
-	</event>
-	<event id="federation4">
-		<show>The head {steed:alien} steps forward. "We come to inform you of your violations against the Intergalactic Federation in your undocumented pursuit of {char:nemesis} and his propensity for {evilAct:main}. Under the code of law you are considered a vigilante, and swift action must be taken to..."</show>
-		<path ref="federation5">Eat my {weapon:main}!</path>
-		<path ref="cry">Cry</path>
-	</event>
-	<event id="federation5">
-		<show>The {steed:alien} raises his {weapon:alien} and slams it down onto you, causing unthinkable damage to your entire body.</show>
-		<path ref="federation6">It's not over yet...</path>
-		<path ref="die">Die</path>
-	</event>
-	<event id="federation6">
-		<show>In the blink of an eye, the {steed:alien} people disappear.</show>
-		<path ref="help">Call for help</path>
-		<path ref="die">Concede to the inevitable</path>
-	</event>
-	<event id="settlement">
-		<show>
-			As you approach the settlement, a sign comes into view:
-			<div class="card p-2 mt-5">
-				<h4>{town:main}</h4>
-				<p>{motto:main}</p>
-			</div>
-		</show>
-		<path ref="enterSettlement,enterSettlementLady">Enter {town:main}</path>
-		<path ref="road">This place seems weird; find another settlement</path>
-		<if key="char:sidekick">
-			<path ref="settlementTryAttack">Let's burn it down, {char:sidekick}!</path>
-		</if>
-	</event>
-	<event id="enterSettlement">
-		<show>You walk through {town:main}, taking in the {adj:town} sights.</show>
-		<path ref="settlementHanging">Continue walking</path>
-		<path ref="settlement">Leave {town:main}</path>
-	</event>
-	<event id="settlementHanging">
-		<show>You reach the town square, where many townsfolk are gathered. You avoid eye contact as you make your way through the crowd.
-		At the center of the mass of people sits an old man proclaiming the good works of Cat-Jesus. However, that's not why everyone is gathered.
-		There is a hanging happening today!</show>
-		<path ref="askTownsperson">Talk to a townsperson</path>
-		<path ref="watchHanging">Watch the hanging</path>
-		<if key="char:main" value="Cat-Jesus">
-			<path ref="catCult">Push your way into the crowd and confront the Cat-Jesus guy</path>
-		</if>
-	</event>
-	<event id="watchHanging">
-		<show>You watch as the convict is carted into the square as the crowd admires the {adj:dislike} gallows. You feel morally conflicted, since from a young age you've always disliked {adj:dislike} things.</show>
-		<path ref="hangingHero">Sneak over to the convict</path>
-		<path ref="settlementHanging">I don't dislike {adj:dislike} things THAT much...</path>
-	</event>
-	<event id="hangingHero">
-		<show>You stand face to face with the convict.</show>
-		<path ref="riotStart">Tell him you'll help him but he must help you afterwards</path>
-		<path ref="riotStart">Tell him you'll help him for nothing in return</path>
-		<path ref="prayer">Recite the Cat-Jesus prayer for forgiveness in his honor</path>
-	</event>
-	<event id="prayer">
-		<scene />
-		<show>O our lord of all lords the one Cat-Jesus, please take mercy; for we are all but scrawny mites in the presence of your Whiskers and Paws.</show>
-		<path ref="prayer2">Continue</path>
-	</event>
-	<event id="prayer2">
-		<show>We ask not for your aid, nor for your blessing; but rather, for your forgiveness of our sins; Let us live, so we may better serve the Way as the Way shall be served.</show>
-		<path ref="*">Amen</path>
-		<if key="char:main" value="Cat-Jesus">
-			<path>Yeah I pray to myself all the time.</path>
-		</if>
-	</event>
-	<event id="riotStart">
-		<show>You've won the man's trust, but now you must act quick!</show>
-		<path ref="riot">Protest the law of touching the road and yell offensive jibberish</path>
-		<path ref="riot">Start dancing so fast that your feet become balls of fire</path>
-		<if key="char:main" value="Cat-Jesus">
-			<path ref="catCult2">Rip your body in two and reveal yourself as Cat-Jesus</path>
-		</if>
-	</event>
-	<event id="riot">
-		<show>The crowd is bewildered and appalled. Some look like they want to kill you and others seem to support you.</show>
-		<path ref="deathTwist">Take the noose off the convict and martyr yourself</path>
-		<path ref="mayor">Recall the rhetorical triangle to win over the entire town</path>
-	</event>
-	<event id="deathTwist">
-		<show>The crowd approaches you with stones with the intent to kill, but that moment, the ground cracks and you are lifted away from the town.</show>
-		<path ref="moonPeople">Revel in your incredible luck</path>
-		<path ref="die">Jump off your patch of ground and plummit into the town</path>
-	</event>
-	<event id="mayor">
-		<show>You are suddenly elected as the mayor of the town for your 'outstanding' and '{adj}' speaking abilities.</show>
-		<path ref="mayor2">That was quick.</path>
-	</event>
-	<event id="mayor2">
-		<show>As the new mayor, it seems the local aristocracy is anxious to welcome you.</show>
-		<path ref="teaParty">Tea party</path>
-	</event>
-	<event id="teaParty">
-		<show>You sit down at a table full of wig-laden noblemen. One by one, they introduce themselves while a servant passes out {food:tea}-flavored tea. All eyes turn to you. "Mayor, it's an _honor_. Please help us get to _know_ you."</show>
-		<path ref="teaParty2">I'm a zany ranger from the {loc:home} badlands and I'm here to stop {char:nemesis} from {evilAct:main}.</path>
-		<path ref="teaParty2">I'm far wealthier than all of you fools.</path>
-		<path ref="teaParty2">I'm the main character from _{title:main}_.</path>
-	</event>
-	<event id="teaParty2">
-		<show>A prominently bearded landlord stands up. "{int} Please, _do_ tell us more. Just for your _consideration_, I order pizza worth more than the likes of you, so remain _modest_."</show>
-		<path ref="teaParty3">You call yourself well off? My underwear is made of silk interlaced with gold. They probably cost more than your wife did.</path>
-		<path ref="nobilityShame">What are those shoes you're wearing? Elf slippers?</path>
-		<path ref="nobilityShame">Nice beard. I bet you have it because you can't afford a razor.</path>
-	</event>
-	<event id="teaParty3">
-		<show>~ The man sits down ~</show>
-		<path ref="teaParty4">Next.</path>
-		<path ref="nobilityShame">Gentlemen, what even is this _{food:tea}_ tea, anyway? Who even makes this stuff?</path>
-	</event>
-	<event id="teaParty4">
-		<show>A fabulously colorful duke stands to interject. His {color} robes whip through the antiquated chamber as he stomps toward you. "My backyard garden was more expensive than your mother's prison bail!"</show>
-		<path ref="teaParty5">My family has been in power for 10,000 years. Your family probably didn't even have a name until you were born, and your lack of propriety immediately disgraced it.</path>
-		<path ref="nobilityShame">Want to fight, buddy?</path>
-		<path ref="nobilityShame">Touché, my friend.</path>
-	</event>
-	<event id="teaParty5">
-		<show>Shouts of physical and psycological pain reverberate through the chamber as everyone starts shouting at the top of their lungs. You hear one man yelling, "Your grandfather was a _petty_ sandwich handler, just like {char:nemesis}!"</show>
-		<path ref="teaParty6">Wait a minute. {char:nemesis}?</path>
-	</event>
-	<event id="teaParty6">
-		<show>"Yes, and if he's your friend we're never talking to him again."</show>
-		<path ref="teaParty7">No, he's actually my eneme...nevermind. How do you know him?</path>
-	</event>
-	<event id="teaParty7">
-		<show>The noblemen settle down again, brushing themselves off and retrieving fallen wigs from under tables. "Of _course_ we know him. How _else_ do you think we made all this money? There's good business to be made when you're {evilAct:main}."</show>
-		<path ref="teaParty8">You've all been {evilAct:main}?</path>
-	</event>
-	<event id="teaParty8">
-		<show>"Yes it's quite profitable these days. Especially in {loc:nemesis}."</show>
-		<path ref="teaParty10">Where is {char:nemesis}? I have a score to settle.</path>
-		<path ref="businessVenture">Get me in on this deal.</path>
-	</event>
-	<event id="teaParty9">
-		<show>"Sir, you might _consider_ the arrangement of a meeting with {char:nemesis} in {loc:nemesis}. He tends to move from place to place, but his headquarters may be found on the outskirts of {town:nemesis}"</show>
-		<path ref="teaParty10">Where is {char:nemesis}? I have a score to settle.</path>
-		<path ref="businessVenture">Get me in on this.</path>
-	</event>
-	<event id="nobilityShame">
-		<scene />
-		<show>~ The nobility laughs at your stupidity ~</show>
-		<path ref="*">Suck it up</path>
-		<path ref="cry">Weep</path>
-		<path ref="die">Die of shame</path>
-	</event>
-	<event id="businessVenture">
-		<show>"Ah. Yes, perhaps we could do with an accountant."</show>
-		<path ref="businessVenture2">Nothing against accountants, but are there any other options?</path>
-		<path ref="businessVenture3">Sounds good!</path>
-	</event>
-	<event id="businessVenture2">
-		<show>"No."</show>
-		<path ref="businessVenture3">Dang.</path>
-	</event>
-	<event id="businessVenture3">
-		<show>The noblemen lead you to their carriage, pushing some crates out of the way to give you a place to seat yourself.</show>
-		<path ref="businessVenture4">Smirk sleazily</path>
-		<path ref="businessVenture4">Smirk uncomfortably</path>
-		<path ref="businessVenture4">Look onward dutifully</path>
-	</event>
-	<event id="catCult">
-		<show>Squeezing between two {adj} ladies and a quite {adj} grump, you step forward and announce your presence to the old man.</show>
-		<path ref="catCult2">Say nothing</path>
-		<path ref="catCult2">I'm Cat-Jesus!</path>
-	</event>
-	<event id="catCult2">
-		<show>The man stares intently at your furry pelt and {adj:main} whiskers. "It can't be."</show>
-		<path ref="catCult3">Yeah it can.</path>
-		<path ref="catCult2">Bow before me, for I spare only those who pay homage to My great form.</path>
-	</event>
-	<event id="catCult3">
-		<show>He wails and prostrates himself in submission to your divine presence.</show>
-		<path ref="catCult4">This whole 'being a god' thing ain't too bad afer all.</path>
-	</event>
-	<event id="catCult4">
-		<show>A mischevious teenager smirks from the sidelines. "He only pretended to believe in you so people would give him money."</show>
-		<path ref="catCult5">Heresy! Become smitten!</path>
-		<path ref="catCultHelp">Eh, I'll spare you if you help me out.</path>
-	</event>
-	<event id="catCultHelp">
-		<show>He takes advantage of your hesitation and dives headfirst into the crowd of onlookers.</show>
-		<path ref="catCult7">Strike him down</path>
-		<path ref="run">Peace out of here</path>
-	</event>
-	<event id="catCult5">
-		<show>A bolt of lightning strikes the gallows, spraying the crowd with sharp chips of wood. The old man looks up, stares for a second, and jumps to his feet. "Forget my old life, I'm rolling with Cat-Jesus now!"</show>
-		<path ref="catCult6">Eh, what's a god without his devotee.</path>
-		<path ref="catCult7">Not so fast, unbeliever.</path>
-	</event>
-	<event id="catCult6">
-		<assign key="char:sidekick" value="Cat-Cult Elder" />
-		<show>You explain to the old man that {char:nemesis} is {evilAct:main}, and must be stopped. He looks on, nodding vaguely as though distracted by your {adj:main} godliness.</show>
-		<path ref="road">Enough talk - let's move, {char:sidekick}.</path>
-		<path ref="catCult7">You can be my sidekick...IN THE AFTERLIFE!</path>
-	</event>
-	<event id="catCult7">
-		<assign key="char:sidekick" value="Ghost of the {char:sidekick}" />
-		<show>He disappears in a spark of bright embers, and you're left surrounded by a crowd of apprehensive onlookers. They start muttering to one another saying things like, "Cat-Jesus is all talk, no stock. Let's take him down! He can't win if we swarm him with our {adj} mass of humanity."</show>
-		<path ref="run">Agree</path>
-		<path ref="die">Disagree</path>
-	</event>
-	<event id="askTownsperson">
-		<show>You turn to your right and see a {adj:townsperson} townsperson. They give you a wild-eyed stare.</show>
-		<path ref="askTownsperson2">Strike up conversation</path>
-		<path ref="watchHanging">Turn back to the hanging and try to ignore them</path>
-	</event>
-	<event id="askTownsperson2">
-		<show>You open your mouth to speak, but the townsperson is quicker. "Good day! My name is {char:townsperson}! I have {range:7-15} children and no life!" They continue their wild-eyed stare.</show>
-		<path ref="askTownsperson3">Yes, um... Why is there a hanging today?</path>
-		<path ref="excursion">{char:townsperson}, I need your help. Someone is going around {evilAct:main}, and we need to do something about it!</path>
-	</event>
-	<event id="askTownsperson3">
-		<show>"There is a man who touched the road! NO ONE CAN TOUCH THE ROAD!"</show>
-		<path ref="askTownsperson4">That's illegal here?</path>
-	</event>
-	<event id="askTownsperson4">
-		<show>You back up slowly and make your way through the crowd. You want to leave this place. As you walk back through the settlement,
-		now desolate because of the hanging, you spot a pillar of smoke over the horizon.</show>
-		<path ref="spaceship">Go to the smoke</path>
-		<path ref="settlement">Find another settlement</path>
-	</event>
-	<event id="spaceship">
-		<show>As you approach the source of the smoke, you become horrified. Partially buried in the ground
-		in front of you lies a spaceship. The cockpit blinks and chirps, but there is no life source to be found.</show>
-		<path ref="spaceship2">Examine closer</path>
-		<path ref="settlement">Go back into town</path>
-	</event>
-	<event id="spaceship2">
-		<assign key="weapon:spaceship" value="{weapon}" />
-		<show>You step closer and look inside the cockpit. You see a folded piece of paper and a {weapon:spaceship}.</show>
-		<path ref="spaceship3">Read note</path>
-		<path ref="getSpaceshipWeapon">Pick up the {weapon:spaceship}</path>
-	</event>
-	<event id="getSpaceshipWeapon">
-		<assign key="weapon:main" value="{weapon:spaceship}" />
-		<show>You heft your new {weapon:spaceship}.</show>
-		<path ref="spaceship3">Read the note</path>
-	</event>
-	<event id="spaceship3">
-		<show>
-			<div class="card text-left p-5">{char:main}, you are our only hope. <br /> Please use this spaceship and meet us at this Intergalactic Coordinate Point: <br />
-			23532.1355.134 15555.1746.9516 <br /><br />
-			P.S. We can help you find {char:nemesis}.</div>
-		</show>
-		<path ref="spaceship4">Board the spaceship</path>
-		<path ref="road">Walk away and pretend this never happened</path>
-	</event>
-	<event id="spaceship4">
-		<show>You climb into the cockpit and realize you don't have the slightest clue what you're doing.</show>
-		<path ref="hissing">Activate the hypothermal thrust contractors</path>
-		<path ref="pow">Increment the pseudo-cyclical strut duct</path>
-		<path ref="spaceship5">Fire the rotational axis power reducer</path>
-		<path ref="darken">Activate the photovoltaic darkening system</path>
-	</event>
-	<event id="hissing">
-		<scene />
-		<show>You hear a hissing sound.</show>
-		<path ref="*">That doesn't seem right.</path>
-	</event>
-	<event id="splash">
-		<scene />
-		<show>You hear a splash.</show>
-		<path ref="*">That doesn't seem right.</path>
-	</event>
-	<event id="pow">
-		<scene />
-		<show>As soon as you touch the controls, you hear a loud "POW!"</show>
-		<path ref="*">That doesn't seem right.</path>
-	</event>
-	<event id="spaceship5">
-		<show>You hear a quiet whirring sound. Sounds correct to you.</show>
-		<path ref="pow,hissing">Upend the horizontal alignment gearing overvolter</path>
-		<path ref="spaceship6">Realign the Jupiter Guidance System</path>
-		<path ref="pow,splash">Concentrate the washer fluid</path>
-		<path ref="pow">Charge the flux capacitor</path>
-	</event>
-	<event id="spaceship6">
-		<show>The Jupiter Guidance System comes to life. You enter the Intergalactic coordinates.</show>
-		<path ref="spaceship7">Connect the CAT17 cable to the locomotive transitional hyperspace drive</path>
-		<path ref="pow,hissing">Defragment the crash rotator</path>
-		<path ref="pow,hissing">Cancel the omnipotent gravity stretcher</path>
-		<path ref="hissing">Fumble with the prograde directional indicator</path>
-	</event>
-	<event id="spaceship7">
-		<show>The CAT17 cable seems to connect the guidance system to the LTHD. You might have to remove it later.</show>
-		<path ref="spaceship8">Turn the dial labeled "415-DFNR"</path>
-		<path ref="pow">Hit the four dimensional horizontal display system</path>
-		<path ref="pow,hissing">Translate the object-oriented star RAM</path>
-		<path ref="splash">Kill the gyroscopic orientation meter</path>
-	</event>
-	<event id="spaceship8">
-		<show>You turn the dial and it doesn't seem to do anything. Better than making some terrible noise though.
-		It occurs to you that the label "DFNR" might stand for "Dial For No Reason."</show>
-		<path ref="pow,hissing">Reduce the waste creation systems</path>
-		<path ref="pow">Tap the "Delete Random Planet" button</path>
-		<path ref="spaceship9">Run the pre-flight simulation</path>
-		<path ref="pow,hissing">Hang the zero-division float computer</path>
-	</event>
-	<event id="spaceship9">
-		<show>As the pre-flight simulation runs, you twiddle your thumbs and wait for it to complete. After a couple of minutes, the hyperspace drive roars to life!</show>
-		<path ref="spaceship10">Pull back on the joystick</path>
-		<path ref="spaceship10">Move up the throttle</path>
-		<path ref="hissing">Adjust the flaps for takeoff</path>
-		<path ref="laseredToDeath">Fire the anti-personnel cockpit lasers</path>
-	</event>
-	<event id="spaceship10">
-		<show>We have liftoff! Somehow you managed to get the spaceship running. What do you want to do now?</show>
-		<path ref="spaceship11">Go to space, obviously.</path>
-	</event>
-	<event id="spaceship11">
-		<show>You activate the Jupiter Guidance System and the spaceship points towards the Intergalactic Coordinate Point. The cockpit display says _hyperspace drive charging_. 
-		After a few moments, the spaceship suddenly accelerates rapidly.</show>
-		<path ref="spaceship12">I may have peed myself a bit.</path>
-	</event>
-	<event id="spaceship12">
-		<show>You sit back and relax after a few moments of pure terror. The humming of the hyperspace drive is hypnotizing.</show>
-		<path ref="spaceship13">I might take a little nap...</path>
-	</event>
-	<event id="spaceship13">
-		<show>You fall asleep quickly. You're enjoying your little nap until you're rudely awoken by red lights flashing, alarms blaring, and a voice repeating "Emergency hyperspace drop imminent." You sit up quickly and see a small, circular spaceship with a beam going to your ship.</show>
-		<path ref="spaceship15">I accept my fate.</path>
-		<path ref="escapeShip">Try to escape!</path>
-	</event>
-	<event id="escapeShip">
-		<show>You try to increase your throttle, but it's no use - not only is the tractor beam very strong, your piloting skills are lacking.</show>
-		<path ref="spaceship15">Okay, now I accept my fate.</path>
-	</event>
-	<event id="spaceship15">
-		<show>As your ship slows to a stop, the other ship comes near and docks onto your ship. Two figures climb out of the ship and enter yours.</show>
-		<path ref="spaceship16">Go to meet them</path>
-		<path ref="hide">Try to hide</path>
-		<path ref="rickKills">Fight them!</path>
-	</event>
-	<event id="hide">
-		<show>You try to find somewhere to hide, but this is a small spaceship.</show>
-		<path ref="hide2">Hide in the cargo bay</path>
-		<path ref="hide3">Hide behind the seat</path>
-		<path ref="spaceship16">Go and meet them</path>
-	</event>
-	<event id="hide2">
-		<show>The cargo bay is the largest spot on this ship, maybe you can hide there. You run to the cargo bay and cower in fear.</show>
-		<path ref="hide4">Continue hiding</path>
-	</event>
-	<event id="hide3">
-		<show>You try to hide behind the seat, but it's fairly small. You get the feeling you look really dumb.</show>
-		<path ref="hide5">Continue hiding</path>
-		<path ref="spaceship16">Give up and meet them</path>
-	</event>
-	<event id="hide4">
-		<show>You stay as still and quiet and possible. Suddenly, there's a loud *ZAP* and the cargo door flies open.
-		A fairly old man with blue spiky hair and something leaking out of his mouth - you're not sure if it's spit or vomit - stands in front of you.
-		"You think you can hide in the cargo bay? Everyone hides in the cargo bay, you idiot! It's the first place you look! What are you, 5? Have you never been to space before,
-		you tiny stupid animal?! And speaking of stupid, do you think I'm stupid? Why would a spaceship be flying around WITHOUT SOMEONE IN IT??" You are terrified. You notice a short boy wearing an orange shirt standing behind him.</show>
-		<path ref="spaceship17">Why are you here?</path>
-	</event>
-	<event id="hide5">
-		<show>You stay as still and quiet and possible. Suddenly, a fairly old man with blue spiky hair and something leaking out of his mouth - you're not sure if it's spit or vomit - 
-		walks up behind you and shouts, "HEY!! What are you, retarded? You think you can hide behind a freaking chair?? What is WRONG with you? Do you think you're some sort of midget or something??
-		Well I have news for you, buddy! You're not! So get up and look at me LIKE A MAN!" You are terrified. You notice a short boy wearing an orange shirt standing behind him.</show>
-		<path ref="spaceship17">Why are you here?</path>
-	</event>
-	<event id="spaceship16">
-		<show>You walk up to the point where they docked with the ship, and wait for them to show up. Eventually a fairly old man with blue spiky hair and something leaking out of his mouth - you're not sure if it's spit or vomit - and a short boy with an orange shirt
-		walk up to you. The man looks angry and the boy seems scared. You're not sure if he's scared or you or the blue-haired man.</show>
-		<path ref="spaceship17">Why did you stop my ship?</path>
-	</event>
-	<event id="spaceship17">
-		<show>"This isn't your ship, is it?" The man says, oddly calm. You shake your head no. "I know it's not your ship, because *Burrrrp* it's MINE!" he shouts.</show>
-		<path ref="spaceship18">I found this ship and it had a note addressed to me in it.</path>
-	</event>
-	<event id="spaceship18">
-		<show>He gives you a confused look. "Let me see it," he says.</show>
-		<path ref="spaceship19">Okay, here you go.</path>
-		<path ref="rickKills">No! You'll never take me alive!</path>
-	</event>
-	<event id="spaceship19">
-		<show>He reads the note. "We need to get you out of here! This letter is a trap from the Intergalactic Federation!" The boy looked apprehensive. "Aw jeez Grandpa, this isn't really our problem, do we really want to get involved in this?"</show>
-		<path ref="spaceship20">Wait, why is the Intergalactic Federation after me?</path>
-	</event>
-	<event id="spaceship20">
-		<show>"The Intergalactic Federation goes after anyone that threatens their rule. If they're going after you, you must be an okay guy." The blue-haired man sits in the pilot seat. The boy jumps in on the left side, and you squeeze in the middle. "We need to get you to a planet outside of Intergalactic Federation jurisdiction," said the blue-haired man.</show>
-		<path ref="spaceship21">What are your names?</path>
-		<path ref="spaceship22">Why are you helping me?</path>
-	</event>
-	<event id="rickKills">
-		<show>You try to attack them with your {weapon:main}, but it's no use. The blue-haired man pulls out a laser gun and shoots you much faster than you could have imagined. Your brain is vaporized on the spot.</show>
-		<path ref="die">Ah well.</path>
-	</event>
-	<event id="laseredToDeath">
-		<show>The instant you press the button, lasers fire from the ceiling and vaporize you. Why is that even a button?</show>
-		<path ref="die">I guess I should have known based on the name...</path>
-	</event>
-	<event id="darken">
-		<show>When you activate the system, the windshield darkens.</show>
-		<path ref="spaceship4">I should have known.</path>
-	</event>
-	<event id="excursion">
-		<show>The townsperson stares at you in {adj} horror. "How could they? We must act!"</show>
-		<path ref="excursion2">Yes, {char:townsperson}. Follow me!</path>
-	</event>
-	<event id="excursion2">
-		<show>"Lead the way, {char:main}."</show>
-		<path ref="excursion3">Alrighty, let's move; we need to to hit the road.</path>
-	</event>
-	<event id="excursion3">
-		<show>"Wait, no! Don't touch the road!"</show>
-		<path ref="askTownsperson3">Touch the road</path>
-		<path ref="excursion4">Oh. Okay.</path>
-	</event>
-	<event id="excursion4">
-		<show>"I'll tell you what. If you don't drag me into this, I won't let anyone know you were planning to touch the road. But you'd better scurry as fast as your {adj:main} legs can carry you. Got it?"</show>
-		<path ref="askTownsperson3">Touch the road</path>
-		<path ref="road">Well in that case, I'm out of here.</path>
-		<path ref="excursion5">If I can't touch the road, could we just ride a {steed:main}?</path>
-	</event>
-	<event id="excursion5">
-		<show>"Yes, that's perfectly fine and legal. I'll follow your lead."</show>
-		<path ref="excursionRide">Go figure. Now let's ride!</path>
-		<if invert key="food:main">
-			<path ref="packFood">How about we at least pack some food first.</path>
-		</if>
-	</event>
-	<event id="excursionRide">
-		<show>You each jump on your respective {steed:main} and follow the road west of {town:main}.</show>
-		<path ref="excursionRide2">Keep riding</path>
-	</event>
-	<event id="excursionRide2">
-		<show>After a while, you start to get hungry.</show>
-		<if key="food:main">
-			<path ref="excursionRide3">Eat the {food:main}</path>
-		</if>
-		<path ref="roadsideFood">Scrounge for food</path>
-		<path ref="help">Call for help while you slowly starve</path>
-	</event>
-	<event id="excursionRide3">
-		<assign key="food:main" value="" />
-		<show>After that nourishing albeit {adj} meal, you and {char:sidekick} prepare to remount and continue on your expedition.</show>
-		<path ref="excursionRide4">Consult your {adj:map} map</path>
-	</event>
-	<event id="excursionRide4">
-		<show>It seems as though you were traveling in the opposite direction this whole time. {char:sidekick} leans over and asks, "{char:main}, but where are we even going in the first place?"</show>
-		<path ref="excursionRide5">Answer evasively</path>
-	</event>
-	<event id="excursionRide5">
-		<show>"Well, {char:sidekick}, I have this feeling we're heading somewhere very important." {char:sidekick} stares you square in the eye. "Huh?"</show>
-		<path ref="excursionRide6">Yeah okay let's just head back.</path>
-	</event>
-	<event id="excursionRide6">
-		<assign key="char:sidekick" value="{char:townsperson}" />
-		<show>You finally reach {town:main} once again. {char:sidekick} slides off his horse, exhausted, but then trips and lands face-first on the road. "I've touched the road..." He stares forward in {adj} stock. "Well, now that I'm a criminal, I'd better stick with you, {char:main}. Live the rogue life, you know?"</show>
-		<path ref="enterSettlement">Sure thing.</path>
-		<path ref="murderSidekick">YOU TOUCHED THE ROAD! DIE!</path>
-	</event>
-	<event id="murderSidekick">
-		<assign key="trait:cruel" value="true" />
-		<assign key="char:sidekick" value="" />
-		<show>You violently stab {char:sidekick} with your {weapon:main}.</show>
-		<path ref="settlement">I'm a vigilante, b***.</path>
-	</event>
-	<event id="packFood">
-		<scene />
-		<assign key="food:option1" value="{food}" />
-		<assign key="food:option2" value="{food}" />
-		<show>You find a bit of {food:option1} as well as {food:option2}.</show>
-		<path ref="packOption1">Let's go with the {food:option1}</path>
-		<path ref="packOption2">I'd honestly rather take the {food:option2}</path>
-	</event>
-	<event id="packOption1">
-		<assign key="food:main" value="{food:option1}" />
-		<show>You go ahead and pack the {food:option1}.</show>
-		<path ref="*">Can't wait to eat that.</path>
-	</event>
-	<event id="packOption2">
-		<assign key="food:main" value="{food:option2}" />
-		<show>You go ahead and pack the {food:option2}.</show>
-		<path ref="*">Can't wait to eat that.</path>
-	</event>
-	<event id="enterSettlementLady">
-		<show>As you enter the {adj} town of {town:main}, a {adj:lady} lady runs up to you in a panic. "{char:main}!" she exclaims.</show>
-		<path ref="talkToLady">Yes, {adj:lady} lady?</path>
-		<path ref="enterSettlement">Ignore lady</path>
-		<if key="char:main" value="Cat-Jesus">
-			<path ref="vaporizeLady">DON'T MESS WITH CAT-JESUS!</path>
-		</if>
-	</event>
-	<event id="talkToLady">
-		<show>"My whole life I've been dreaming of meeting you! You're my hero!" As she babbles on about your {adj:main} hair and {adj:dislike} face, you notice hear reaching behind her back slowly.</show>
-		<path ref="askLady">Ask her about what she has behind her back</path>
-		<path ref="grovelLady">Allow her to continue groveling and pretend you didn't notice</path>
-		<path ref="grovelLady">Why is this town's motto "{motto:main}"</path>
-	</event>
-	<event id="grovelLady">
-		<show>The {adj:lady} lady goes on and on...</show>
-		<path ref="askLady">Ask her about what she has behind her back</path>
-		<path ref="die">Die of boredom</path>
-	</event>
-	<event id="askLady">
-		<show>"What? Nothing," she says, and continues groveling.</show>
-		<path ref="ladyStab">Believe her blatant lie</path>
-		<path ref="askLady2">Ask her again more forcefully</path>
-		<path ref="killLady">Punch her lights out like the horrible human you are</path>
-	</event>
-	<event id="askLady2">
-		<show>"Really, I have nothing," as she continues sharpening a knife behind her back.</show>
-		<path ref="getKnife">Grab the knife</path>
-		<path ref="enterSettlement">Run away</path>
-		<path ref="die">Sacrifice yourself to the gods of {adj:lady} ladies</path>
-	</event>
-	<event id="getKnife">
-		<show>You try to grab the knife but she stabs you through the hand before you can get a grip.</show>
-		<path ref="removeKnife">Attempt to remove knife from your hand</path>
-		<path ref="suffocateLady">Stick your fingers up her nostils to suffocate her</path>
-		<path ref="die">Sacrifice yourself to the gods of {adj:lady} ladies</path>
-	</event>
-	<event id="removeKnife">
-		<show>You try to remove the knife, but as you pull your hand away she stabs your other hand in a shish-kabob-esque fashion. "YOU SHALL PAY FOR WHAT YOU HAVE DONE," she proclaims in an oddly deep voice.</show>
-		<path ref="cry">Cry</path>
-		<path ref="die">Sacrifice yourself to the gods of {adj:lady} ladies</path>
-	</event>
-	<event id="suffocateLady">
-		<show>You stick your fingers as far up her nostrils as they can fit - looks like around the second knuckle. Impressive.</show>
-		<path ref="removeHand">Remove hand while she's distracted</path>
-		<path ref="die">Sacrifice yourself to the gods of {adj:lady} ladies</path>
-	</event>
-	<event id="vaporizeLady">
-		<show>A super-concentrated crepuscular ray strikes the {adj:lady} lady, instantly vaporizing her.</show>
-		<path ref="enterSettlement">Act like nothing happened</path>
-	</event>
-	<event id="removeHand">
-		<show>You successfully remove your hand from the knife. It's bleeding profusely, but at least there's not a knife in it.</show>
-		<path ref="killLady">Try to stick your fingers farther up the {adj:lady} lady's nostrils</path>
-		<path ref="killLady">Punch {adj:lady} lady in the face</path>
-		<path ref="die">Sacrifice yourself to the gods of {adj:lady} ladies</path>
-	</event>
-	<event id="killLady">
-		<show>Congratulations! That was just forceful enough to render the {adj:lady} lady a nonissue.</show>
-		<path ref="enterSettlement">Bandage hand and wander the town</path>
-		<path ref="help">Call for help</path>
-	</event>
-	<event id="ladyStab">
-		<show>You were stabbed by the {adj:lady} lady.</show>
-		<path ref="die">I accept my fate.</path>
-	</event>
-	<event id="settlementTryAttack">
-		<scene />
-		<show>{char:sidekick} looks at you for a full second and says, "What?"</show>
-		<if key="trait:cruel">
-			<path ref="settlementAttack">You heard me.</path>
-		</if>
-		<path ref="*">Nevermind.</path>
-	</event>
-	<event id="settlementAttack">
-		<assign key="trait:cruel" value="true" />
-		<show>You heft your {weapon:main} while your sidekick, {char:sidekick}, twirls his {weapon:sidekick}.</show>
-		<path ref="settlementAttack2">Procure gasoline</path>
-	</event>
-	<event id="settlementAttack2">
-		<show>You walk over to the nearest gas station. A particularly {adj} man leans against the nearest pump, idly refueling his {adj:vehicle} vehicle.</show>
-		<path ref="settlementAttack3">Can we please borrow your pump?</path>
-		<path ref="settlementAttack4">Get out of here, and we'll burn your house down!</path>
-	</event>
-	<event id="settlementAttack3">
-		<show>The man yawns and continues to refuel his {adj:vehicle} vehicle.</show>
-		<path ref="settlementAttack4">Brandish your {weapon:main}</path>
-		<path ref="settlementAttack4">Let {char:sidekick} threaten him instead</path>
-	</event>
-	<event id="settlementAttack4">
-		<show>~ The man runs away ~</show>
-		<path ref="run">Chase him down</path>
-		<path ref="settlementAttack5">Let's start by torching that {adj:vehicle} vehicle.</path>
-		<path ref="settlementAttack8">Burn it all!</path>
-	</event>
-	<event id="settlementAttack5">
-		<show>You start pouring gasoline everywhere as {char:sidekick} readies his flamethrower. "That's right, I found a flamethrower. And it also has a bayonet!"</show>
-		<path ref="settlementAttack7">Cool. Light 'er up.</path>
-		<path ref="settlementAttack6">Where? I want one too!</path>
-	</event>
-	<event id="settlementAttack6">
-		<show>"It's the only one. I found it. It's mine." {char:sidekick} hugs the flamethrower.</show>
-		<path ref="settlementAttack7">Gimme!</path>
-		<path ref="settlementAttack8">Fine. then you do the honors.</path>
-	</event>
-	<event id="settlementAttack7">
-		<assign key="weapon:main" value="flamethrower bayonet" />
-		<assign key="char:sidekick" value="" />
-		<show>~ You wrestle the flamethrower from {char:sidekick} ~</show>
-		<path ref="settlementAttack8">Continue burning down the settlement</path>
-		<path ref="run">Take the flamethrower and run</path>
-	</event>
-	<event id="settlementAttack8">
-		<show>The {adj:vehicle} vehicle roars into flame as you light the gasoline. Terrified screams emanate from the town square as the entire gas station explodes in a giant fireball of {adj} doom.</show>
-		<path ref="settlementAttack9">Continue burning down the settlement</path>
-	</event>
-	<event id="settlementAttack9">
-		<show>Shrieking maniacally, you run through town and set buildings ablaze left and right.</show>
-		<path ref="settlementAttack10">Continue burning down the settlement</path>
-	</event>
-	<event id="settlementAttack10">
-		<show>Finally, as the embers settle and the sky twinkles with the smoke and ash of utter desolation, your ethics get the better of you and you feel like running away before you fully comprehend about what you've done.</show>
-		<path ref="run">Run away</path>
-		<path ref="road">Walk away - you're too cool to run.</path>
-	</event>
+    <event id="start">
+        <assign key="ui:title" value="{title:main}"/>
+        <assign key="ui:subtitle" value="{subtitle:main}"/>
+        <assign key="ui:hue" value="{range:1-360}"/>
+        <assign key="steed:main" value="horse"/>
+        <show>You find yourself on a plateau overlooking {loc:main}.</show>
+        <path ref="identityCrisis">Why am I here?</path>
+        <path ref="ready">I'm ready to do what I came for.</path>
+    </event>
+    <event id="die">
+        <assign key="trait:died" value="true"/>
+        <show>
+            <h3>You died.</h3>
+        </show>
+        <path ref="start">Fair enough.</path>
+        <path ref="start">I know I made my mistakes, but I'm ready to start a new life for myself.</path>
+        <path ref="start">Death is the only certainty in life.</path>
+    </event>
+    <event id="nothing">
+        <show>~ Nothing happens ~</show>
+        <path ref="*">Well, at least I tried.</path>
+    </event>
+    <event id="identityCrisis">
+        <scene/>
+        <show>Why is it always me?</show>
+        <path ref="*">Mope silently</path>
+    </event>
+    <event id="bunny">
+        <show>You wander far away, blind as a bat.</show>
+        <path ref="bunnyTrip">Cry</path>
+    </event>
+    <event id="bunnyVillage">
+        <show>Your tears led you to {town:bunny}: a village entirely ran by bunnies!</show>
+        <path ref="bunnyElder">Where are the leaders of the land?</path>
+        <path ref="intruder">I shall colonize this {adj} bunny village!</path>
+        <path ref="bunnyCult">Marvel at their technologies and keep looking</path>
+    </event>
+    <event id="bunnyCult">
+        <show>You hear a few bunnies chanting the word in a circle around a {color} fire.</show>
+        <path ref="bunnyTrip">If only I could see.</path>
+    </event>
+    <event id="bunnyTrip">
+        <show>You trip over a bunny and the dirt absorbs your tears. You can see again!</show>
+        <path ref="bunnyVillage">Explore the village</path>
+        <path ref="bunnyTalk">Check on the poor bunny.</path>
+        <path ref="intruder">Kick the bunny to see if it's still alive.</path>
+    </event>
+    <event id="intruder">
+        <show>Dust and rock swirl in the air and the satanic God of the bunnies claims your soul for intruding the
+            peaceful lives of these bunnies.
+        </show>
+        <path ref="die">Learn that the moral of this story is to leave wild bunnies alone, and die.</path>
+    </event>
+    <event id="bunnyElder">
+        <show>Tis I, the great {char:bunny}.</show>
+        <path ref="intruder">Make fun of his name</path>
+        <path ref="bunnyQuest">Ask for a quest</path>
+    </event>
+    <event id="bunnyTalk">
+        <show>You pick up the bunny and it says,"Thank you, gentle soul. You are the chosen one. I have a quest, if you
+            choose to accept it."
+        </show>
+        <path ref="bunnyQuest">Accept the quest, no matter how weird, because you're already talking to a bunny</path>
+        <path ref="intruder">Deny the bunny by drop-kicking it</path>
+    </event>
+    <event id="bunnyQuest">
+        <show>The talking bunny gives you a {color:main} letter that reads, "Bunnies are small, no one listens to
+            bunnies. Be our voice in the magical creature senate in {town:senate}. Go there now!"
+        </show>
+        <path ref="bunnyWait">You get pumped, punch a wall, and listen to some badass hero music as you walk away,
+            {adj}.
+        </path>
+        <path ref="run">Run there as fast as you can</path>
+    </event>
+    <event id="bunnyWait">
+        <show>Wait! Don't walk like a {adj} idiot! Take our {steed:main}!</show>
+        <path ref="steed">Take the {steed:main}.</path>
+        <path ref="road">You're terrified of horses so you walk {adj:main} anyway.</path>
+    </event>
+    <event id="ready">
+        <show>You contemplate the situation.</show>
+        <path ref="steed">Let's do this the old-fashioned way.</path>
+        <if key="trait:died">
+            <path ref="birdRecognize">Hey look, a bird.</path>
+        </if>
+        <else>
+            <path ref="bird">Hey look, a bird.</path>
+        </else>
+    </event>
+    <event id="steed">
+        <show>You mount your steed and gallop onward.</show>
+        <path ref="steed2">Yeehaw.</path>
+        <path ref="steedDismount">I did't sign up for this.</path>
+    </event>
+    <event id="steed2">
+        <show>Giddy up {char:steed}!</show>
+        <path ref="steed3">Why did I name my {steed:main} {char:steed}?</path>
+    </event>
+    <event id="steed3">
+        <show>{char:steed} twists his head around, grinning. "Only ask questions that you know have answers."</show>
+        <path ref="steed4">It's a philosophical {steed:main}!</path>
+        <path ref="steedKick">It's an idiot.</path>
+        <path ref="steedDismount">Forget this.</path>
+    </event>
+    <event id="steed4">
+        <show>"So you see here, kid. The world works in strange ways, and you need to be on the top of the sandwich to
+            enjoy the slide, if you get what I'm saying. {int:steed}"
+        </show>
+        <path ref="steed5">Keep listening</path>
+    </event>
+    <event id="steed5">
+        <show>"Right now it may seem as though you've been dropped into a land devoid of meaning, of purpose, and of
+            {adj} {steed:main}s. {int:steed} But I can assure you that one day you will understand that before you can
+            begin {goodAct:main}, you'd better discover your true nature by {evilAct:main}."
+        </show>
+        <path ref="steed6">Keep listening</path>
+        <path ref="steed7">Hold up. Are you asking me to start {evilAct:main}?</path>
+        <path ref="steedSidekick">Sometimes, {char:steed}, it seems you are more man than {steed:main}.</path>
+    </event>
+    <event id="steed6">
+        <show>"Yessir. Deal with it. {int:steed}"</show>
+        <path ref="steed7">Keep listening</path>
+    </event>
+    <event id="steed7">
+        <show>"{int:steed} Before you start a garden you have to cut the weeds, and before you cut the weeds you have to
+            be {evilAct:main}."
+        </show>
+        <path ref="steedKick">Alright, I'm getting a new {steed:main}.</path>
+    </event>
+    <event id="steedKick">
+        <show>"{int:steed}" The {steed:main} suddenly bucks you off, and you faceplant into the dusty road.</show>
+        <if key="trait:died">
+            <path ref="road">Walk it off</path>
+        </if>
+        <path ref="help">I think my neck is broken.</path>
+        <path ref="help">Regardless of whether my neck is broken, I still need help.</path>
+        <path ref="steedChange">I don't like this whole '{steed:main}' thing. I'm more of a {steed:next} person.</path>
+        <path ref="cry">Start crying</path>
+    </event>
+    <event id="steedSidekick">
+        <assign key="char:sidekick" value="{char:steed} the {steed:main}-man"/>
+        <show>I am honored to quest by your side, as equals.</show>
+        <path ref="steedKick">You're still my {adj:steed} steed.</path>
+    </event>
+    <event id="steedDismount">
+        <show>You dismount and glumly seat yourself on a rock.</show>
+        <path ref="identityCrisis">What am I doing?</path>
+        <path ref="birdLeave">Hey look, it's that bird again!</path>
+    </event>
+    <event id="steedChange">
+        <assign key="steed:main" value="{steed:next}"/>
+        <assign key="steed:next" value="{steed}"/>
+        <assign key="char:steed" value="{char}"/>
+        <assign key="adj:steed" value="{adj}"/>
+        <assign key="int:steed" value="{int}"/>
+        <show>~ A ripple in space-time opens a portal through which a herd of {steed:main}-like creatures descend into
+            {loc:main} ~
+        </show>
+        <path ref="steed">Now we're talking.</path>
+    </event>
+    <event id="help">
+        <show>You call for help in a pitiful, {adj:helpVoice} voice.</show>
+        <path ref="help2">Keep yelling</path>
+        <path ref="die">Give up and die</path>
+        <if key="char:main" value="Cat-Jesus">
+            <path ref="heal">Heal yourself, since you're Cat-Jesus</path>
+        </if>
+    </event>
+    <event id="help2">
+        <show>Nothing yet.</show>
+        <path ref="help3">Listen for a while</path>
+        <path ref="cry">Start crying</path>
+        <path ref="help3">Yell louder and with extra {adj:helpVoice} gusto</path>
+        <path ref="die">Give up and die</path>
+    </event>
+    <event id="help3">
+        <show>You hear voices over a hill.</show>
+        <path ref="nomad,paparazzi,catJesus">Keep yelling</path>
+        <path ref="die">Give up and die</path>
+    </event>
+    <event id="heal">
+        <show>~ Ancient chanting resonates around you as your physical body is mended ~</show>
+        <path ref="road">Wander away in a trance</path>
+    </event>
+    <event id="nomad">
+        <show>It's a group of nomads! They're probably cannibals.</show>
+        <path ref="nomad2">They might not be cannibals.</path>
+        <path ref="die">Die before they eat you</path>
+    </event>
+    <event id="nomad2">
+        <show>~ The nomads stare at you for a while ~</show>
+        <path ref="nomad3">Don't eat me!</path>
+        <path ref="nomad4">Eat me, and get it over with!</path>
+    </event>
+    <event id="nomad3">
+        <show>A small child walks out of the group and pokes you with a stick.</show>
+        <path ref="nomad4">Say nothing</path>
+        <path ref="cry">Cry</path>
+    </event>
+    <event id="nomad4">
+        <show>"You're too {adj} and {adj}. Our chef {char:chef} can't deal with it."</show>
+        <path ref="nomad5">Ah.</path>
+    </event>
+    <event id="nomad5">
+        <show>A large, {adj} man steps out from behind the others. He is very tall and appears to be the leader. "Hello.
+            My name is {char:nomad}, and I am the chieftan of our tribe. Why were you calling for help?"
+        </show>
+        <path ref="nomadLeave">I honestly can't remember.</path>
+        <path ref="nomad6">Can you point me to the nearest village?</path>
+    </event>
+    <event id="nomad6">
+        <show>"Sure. However, there's only one village within walking distance, and that's {town:main}." The leader
+            points eastward. "Be warned, though; they're known for {evilAct:main}."
+        </show>
+        <path ref="nomadLeave">Alright, thanks.</path>
+        <path ref="nomad7">Why did they call it {town:main}?</path>
+    </event>
+    <event id="nomad7">
+        <show>The nomad glowers at you. "Ask too many questions and we'll eat you alive."</show>
+        <path ref="nomadLeave">It's getting late...you should probably be home soon. Oh wait....</path>
+        <path ref="cry">Cry</path>
+    </event>
+    <event id="nomadReadyLeave">
+        <show>"Fair enough."</show>
+        <path ref="nomadLeave">Yeah.</path>
+    </event>
+    <event id="nomadLeave">
+        <show>The nomads walk away.</show>
+        <path ref="settlement">Drag yourself to the nearest city</path>
+        <path ref="help">Call for more help</path>
+        <path ref="cry">Cry</path>
+    </event>
+    <event id="paparazzi">
+        <show>It's a group of paparazzi! You're screwed.</show>
+        <path ref="run">Pick up your broken body and run</path>
+        <path ref="paparazzi2">Try and negotiate</path>
+        <path ref="die">Die before they reach you</path>
+    </event>
+    <event id="paparazzi2">
+        <show>The paparazzi swarm around you, squealing and grunting in a truly {adj} manner.</show>
+        <path ref="paparazzi3">Away, fiends!</path>
+    </event>
+    <event id="paparazzi3">
+        <show>You feel your arms and legs detach as you are torn apart by the scrambling horde.</show>
+        <path ref="summonHero,nothing">Call upon {char:hero}</path>
+        <path ref="die">Succumb to your fate</path>
+    </event>
+    <event id="catJesus">
+        <show>A multitude of voices merge into one as Cat-Jesus appears over the horizon. He gazes down upon your
+            pathetic form and hums deeply. "It seems we meet again, {char:main}."
+        </show>
+        <path ref="catJesus2">You exist!</path>
+        <path ref="catJesus3">What do you mean by 'again'?</path>
+        <if key="char:main" value="Cat-Jesus">
+            <path ref="catJesusAlready">You again? But I'm...you...</path>
+        </if>
+    </event>
+    <event id="catJesus2">
+        <show>"Yes. Duh."</show>
+        <path ref="catJesus3">Fine. But why are you here?</path>
+        <if key="char:main" value="Cat-Jesus">
+            <path ref="catJesusAlready">But...</path>
+        </if>
+    </event>
+    <event id="catJesus3">
+        <show>Cat-Jesus gazes at you, scorching your skin and giving you a really {adj} sunburn. "You have defied me for
+            the last time, {char:main}. Allow this curse be a lesson to you."
+        </show>
+        <path ref="catJesus4">Wait, curse...?</path>
+        <if key="char:main" value="Cat-Jesus">
+            <path ref="catJesusAlready">But I'm already Cat-Jesus...</path>
+        </if>
+    </event>
+    <event id="catJesus4">
+        <show>"Yes, {char:main}. A curse. And a quite {adj} one at that. From this point onward, you will be the new
+            Cat-Jesus. I will be free from this burden!"
+        </show>
+        <if key="char:main" value="Cat-Jesus">
+            <path ref="catJesusAlready">But I'm already Cat-Jesus...</path>
+        </if>
+        <else>
+            <path ref="catJesus5">Oh please no.</path>
+        </else>
+    </event>
+    <event id="catJesus5">
+        <assign key="char:main" value="Cat-Jesus"/>
+        <assign key="steed:main" value="cat angel"/>
+        <assign key="weapon:main" value="claws"/>
+        <show>"Oh yes. Ohhh, yes. Goodbye, {char:main}."</show>
+        <path ref="run">Run for your life</path>
+    </event>
+    <event id="catJesusAlready">
+        <show>"Oh yeah. Whoops. Get out of here, {char:main}."</show>
+        <path ref="run">Scurry</path>
+    </event>
+    <event id="summonHero">
+        <scene/>
+        <show>{char:hero} appears out of nowhere, bathing you in crepuscular rays of {adj} glory.</show>
+        <path ref="summonHero2">What took you so long?</path>
+        <path ref="summonHero4">Get me out of here, quick!</path>
+    </event>
+    <event id="summonHero2">
+        <show>{char:hero} stares into your soul. "Dude, I'm not your servant. I know the plot demands that you get all
+            the attention, but we both know I'm the real hero here."
+        </show>
+        <path ref="murderHero">Murder {char:hero}</path>
+        <path ref="playAsHero">Can I just play as you instead?</path>
+        <path ref="summonHero3">True, true.</path>
+    </event>
+    <event id="summonHero3">
+        <show>"Why did you even summon me here?"</show>
+        <path ref="summonHero4">It's complicated.</path>
+        <path ref="summonHero4">It gave the option, so I wanted to try it.</path>
+    </event>
+    <event id="summonHero4">
+        <show>"Okay. Well, I can take you to the nearest town, if that's any help to you."</show>
+        <path ref="settlement">Yes please.</path>
+        <path ref="*">Nevermind, I'll go back to whatever I was doing.</path>
+    </event>
+    <event id="murderHero">
+        <assign key="trait:cruel" value="true"/>
+        <show>You promptly stab {char:hero} with your {weapon:main}.</show>
+        <path ref="identityCrisis">What have I done?</path>
+        <path ref="road">Walk away</path>
+    </event>
+    <event id="playAsHero">
+        <assign key="char:sidekick" value="{char:main}"/>
+        <assign key="weapon:sidekick" value="{weapon:main}"/>
+        <assign key="char:main" value="{char:hero}"/>
+        <assign key="weapon:main" value="{weapon}"/>
+        <assign key="char:hero" value="{char}"/>
+        <assign key="weapon:hero" value="{weapon}"/>
+        <show>~ You are now playing as {char:main} ~</show>
+        <path ref="start">Feels good.</path>
+    </event>
+    <event id="run">
+        <show>You run as fast as you can.</show>
+        <path ref="run2">Run faster</path>
+        <path ref="run3">Maintain your speed</path>
+    </event>
+    <event id="run2">
+        <show>You trip and fall, breaking half the bones in your body.</show>
+        <path ref="help">Call for help</path>
+        <path ref="run4">Get up and keep running</path>
+    </event>
+    <event id="run3">
+        <show>You're starting to get tired.</show>
+        <path ref="run4">Just keep going</path>
+        <path ref="run4">Take a breather</path>
+    </event>
+    <event id="run4">
+        <show>Okay. Now what?</show>
+        <path ref="run5">Run some more!</path>
+        <path ref="cry">Cry</path>
+    </event>
+    <event id="run5">
+        <show>You're getting really, really tired.</show>
+        <path ref="road">Walk instead</path>
+        <path ref="die">I'd rather just die</path>
+    </event>
+    <event id="bird">
+        <show>~ The bird seems to be carrying a note ~</show>
+        <path ref="callBird">Call to the bird</path>
+        <path ref="shootBird">Shoot down the bird</path>
+        <path ref="birdLeave">Do nothing</path>
+    </event>
+    <event id="birdRecognize">
+        <show>~ The bird seems to recognize you ~</show>
+        <path ref="birdAttack">Hand it over!</path>
+        <path ref="shootBird">Shoot the bird</path>
+        <path ref="run">Run</path>
+    </event>
+    <event id="birdLeave">
+        <show>~ The bird flies away ~</show>
+        <path ref="birdLeave2">Chase after the bird</path>
+        <path ref="identityCrisis">Oh well. Not that it matters.</path>
+    </event>
+    <event id="birdLeave2">
+        <show>You lose sight of the bird.</show>
+        <path ref="birdLeave3">Wow, if only I had something fast like a {steed:main}.</path>
+    </event>
+    <event id="birdLeave3">
+        <show>You climb tentatively onto the back of {char:steed}.</show>
+        <path ref="steed3">Wait, who names their {steed:main} {char:steed}?</path>
+    </event>
+    <event id="callBird">
+        <show>The bird doesn't respond, because it's a bird.</show>
+        <path ref="callBird2">Call to the the bird again</path>
+        <path ref="shootBird">Shoot down the bird</path>
+    </event>
+    <event id="callBird2">
+        <show>"What do you want?" it replies, with an angry look.</show>
+        <path ref="callBird3">I'd like to read that note, please.</path>
+        <path ref="birdAttack">Give me that note or else I'll destroy you and everything you love.</path>
+    </event>
+    <event id="callBird3">
+        <show>"Since you asked so politely, you may read it," the bird declared in a {adj:birdVoice} voice.</show>
+        <path ref="angryBird">Why is your voice so {adj:birdVoice}?</path>
+        <path ref="readNote">Read the note</path>
+    </event>
+    <event id="angryBird">
+        <show>"Hey! My voice is not {adj:birdVoice}! You're the one who is {adj:main}!"</show>
+        <path ref="readNote">I'm not {adj:main}! Let me see that note!</path>
+        <path ref="readNote">Yeah, you're right. Can I see that note?</path>
+    </event>
+    <event id="birdAttack">
+        <show>~ The bird pecks your eyes out and flaps off with your spleen ~</show>
+        <path ref="die">Well, shucks.</path>
+    </event>
+    <event id="shootBird">
+        <assign key="trait:cruel" value="true"/>
+        <show>~ The bird plummets to the ground ~</show>
+        <path ref="birdNote">I'm a terrible person.</path>
+    </event>
+    <event id="birdNote">
+        <show>You inspect the note. It seems to be addressed from {loc:mission}.</show>
+        <path ref="readNote">Read the note</path>
+    </event>
+    <event id="readNote">
+        <show>
+            <div class="card text-left px-2 py-5">To whomstsoever reads this note:
+                <br/>
+                <br/>
+                {char:nemesis} is {evilAct:main}! We need the help of someone like {char:main} to save us from this most
+                {adj} threat!
+                <br/>
+                <br/>
+                Signed,
+                <br/>
+                {char:lover}
+            </div>
+        </show>
+        <path ref="heroPose">Look up into the sun like a true hero</path>
+        <path ref="cry">Cry</path>
+    </event>
+    <event id="heroPose">
+        <show>As you look up into the sun, you hear your retinas sizzling. You feel pretty awesome though.</show>
+        <path ref="lookAway">Look away before your eyes shrivel up</path>
+        <path ref="killEyes">Keep staring like an idiot</path>
+    </event>
+    <event id="cry">
+        <scene/>
+        <show>You cry.</show>
+        <path ref="cry2">Cry more</path>
+        <path ref="*">Continue</path>
+    </event>
+    <event id="cry2">
+        <show>You cry like a little baby.</show>
+        <path ref="cry3">Cry more</path>
+        <path ref="*">Continue</path>
+    </event>
+    <event id="cry3">
+        <show>You try to cry, but you have run out of tears.</show>
+        <path ref="*">Continue</path>
+    </event>
+    <event id="killEyes">
+        <show>Your eyes burst into flames and now you can't see.</show>
+        <if key="trait:died">
+            <path ref="bunny">I guess I'm blind now.</path>
+        </if>
+        <path ref="cry">Cry</path>
+        <path ref="die">Die</path>
+    </event>
+    <event id="lookAway">
+        <show>You look away, and focus on the task at hand: Stopping {char:nemesis} from {evilAct:main}.</show>
+        <path ref="settlement">Go to the nearest settlement</path>
+    </event>
+    <event id="road">
+        <show>Feeling {adj}, you walk along the {adj:road} road.</show>
+        <path ref="road2,roadFork,signpost,signpost,traveler,fortuneTeller,roadsideFood">Keep walking</path>
+    </event>
+    <event id="road2">
+        <show>The {adj:road} road just keeps on going.</show>
+        <path ref="road">Keep walking</path>
+        <path ref="run">Run instead</path>
+    </event>
+    <event id="roadFork">
+        <show>You come across a fork in the road.</show>
+        <path ref="road">Go left</path>
+        <path ref="road">Go right</path>
+    </event>
+    <event id="roadsideFood">
+        <scene/>
+        <assign key="food:roadside" value="{food}"/>
+        <show>You find some {food:roadside} by the side of the road.</show>
+        <path ref="foodPoisoning">Yum!</path>
+        <path ref="*">Pass on that.</path>
+    </event>
+    <event id="foodPoisoning">
+        <show>Your intestines let out a squeal of terror as you digest the {food:roadside}. You're going to have to take
+            a break from the journey.
+        </show>
+        <path ref="die">Die quickly</path>
+        <path ref="sleep">Writhe in pain for the next 3-4 hours</path>
+    </event>
+    <event id="sleep">
+        <show>You drift into restless sleep.</show>
+        <path ref="wakeUp,wakeUp,wakeUp,wakeUpSmoke">Finally!</path>
+    </event>
+    <event id="dieSleep">
+        <show>You never wake up again.</show>
+        <path ref="die">Shucks.</path>
+    </event>
+    <event id="wakeUp">
+        <show>Good morning, {loc:main}!</show>
+        <path ref="*">Stretch and yawn</path>
+    </event>
+    <event id="wakeUpSmoke">
+        <show>You wake up and sniff the air. Something is afoot.</show>
+        <path ref="dieSleep">Go back to sleep</path>
+        <path ref="wakeUpSmoke2">Look around</path>
+    </event>
+    <event id="wakeUpSmoke2">
+        <show>A small spacecraft has crashed nearby. Judging by the wreckage, it's a miracle you slept through the
+            impact.
+        </show>
+        <path ref="spaceship2">Approach the ship</path>
+        <path ref="road">Leave</path>
+    </event>
+    <event id="traveler">
+        <if key="trait:cruel">
+            <show>You happen across a traveler, but he runs away upon seeing you.</show>
+            <path ref="road2">Good for him.</path>
+        </if>
+        <else>
+            <show>You happen across another traveler.</show>
+            <path ref="traveler2">He seems a bit too {adj}.</path>
+            <path ref="traveler3">How's it going?</path>
+            <path ref="road">Walk away</path>
+        </else>
+    </event>
+    <event id="traveler2">
+        <show>The traveler stops and waves as you walk nearer. He seems relatively harmless, but you can't be too sure
+            in these parts of {loc:main}.
+        </show>
+        <path ref="traveler3,travelerTrade,travelerPassing">Hello, sir. What's your business around here?</path>
+    </event>
+    <event id="traveler3">
+        <show>"Good day! I'm {char:nemesis} from the {adj} town of {town}."</show>
+        <path ref="traveler4">Hold up.</path>
+    </event>
+    <event id="traveler4">
+        <show>You realize this traveler's name is identical to that of your nemesis, {char:nemesis}. Could this be a
+            coincidence, or is an epic battle about to take place?
+        </show>
+        <path ref="traveler5">It's a coincidence. He looks completely different.</path>
+        <path ref="traveler6">It's not a coincidence! Attack!</path>
+    </event>
+    <event id="traveler5">
+        <show>The traveler waves amicably. "I'd better be on my way. See you around!"</show>
+        <path ref="road">Continue walking</path>
+        <path ref="traveler6">He knows I'm onto him. Attack!</path>
+    </event>
+    <event id="traveler6">
+        <show>You brandish your {weapon:main} and shout curses at the traveler. His eyes grow wide with shock and he
+            falls over. Gingerly picking himself up, he wails, "Don't hurt me! I don't know what you're talking about!"
+        </show>
+        <path ref="road">Oh my, I'm so sorry. I thought you were someone else.</path>
+        <path ref="traveler7">Stab him with your {weapon:main}</path>
+    </event>
+    <event id="traveler7">
+        <show>"Sir, please let me live! I mean no harm!"</show>
+        <path ref="road">Farewell, then. We shall now part ways.</path>
+        <path ref="murderTraveler">Stab him with your {weapon:main}</path>
+        <path ref="summonHero">Summon {char:hero} to do your dirty work</path>
+    </event>
+    <event id="murderTraveler">
+        <assign key="trait:cruel" value="true"/>
+        <show>The traveler dies with an agonizing, {adj} shriek.</show>
+        <path ref="road">Serves him right.</path>
+        <path ref="road">I feel kind of bad.</path>
+    </event>
+    <event id="travelerPassing">
+        <show>The traveler ignores you and continues on his way.</show>
+        <path ref="road">Keep walking</path>
+        <path ref="settlement">Follow him</path>
+    </event>
+    <event id="travelerTrade">
+        <assign key="weapon:trade" value="{weapon}"/>
+        <show>"Hey there! Are you interested in buying a {weapon:trade}?"</show>
+        <path ref="travelerTrade2">Sure! How much?</path>
+        <path ref="road">No thanks.</path>
+    </event>
+    <event id="travelerTrade2">
+        <show>"It's yours, but only in exchange for that {weapon:main}."</show>
+        <path ref="travelerTrade3">Sounds good.</path>
+        <path ref="road">I think I'll keep my {weapon:main}.</path>
+        <path ref="travelerAttack">Give him the {weapon:main}, figuratively speaking</path>
+    </event>
+    <event id="travelerTrade3">
+        <assign key="weapon:main" value="{weapon:trade}"/>
+        <show>You swap weapons and cheerfully part ways.</show>
+        <path ref="road">Onward!</path>
+    </event>
+    <event id="travelerAttack">
+        <assign key="trait:cruel" value="true"/>
+        <show>You knock the traveler off his feet, brandishing your {weapon:main}.</show>
+        <path ref="road">Let this be a warning to you.</path>
+        <path ref="traveler7">Finish the job</path>
+    </event>
+    <event id="signpost">
+        <assign key="town:main" value="{town}"/>
+        <assign key="motto:main" value="{motto}"/>
+        <show>You encounter a slightly {adj} crossroads. A nearby signpost seems to point toward a small settlement.
+        </show>
+        <path ref="settlement">Visit the settlement</path>
+        <path ref="road">Keep walking</path>
+    </event>
+    <event id="fortuneTeller">
+        <show>A small tent appears over the hill in front of you. You wonder if someone is inside.</show>
+        <path ref="fortuneTeller2">Take a look</path>
+        <path ref="road">I've been through enough today.</path>
+    </event>
+    <event id="fortuneTeller2">
+        <show>Soft, {adj:main} music reaches your ears as you walk over to the tent.</show>
+        <path ref="fortuneTeller3">Music is good.</path>
+        <path ref="road">I'm unquestionably being set up here.</path>
+    </event>
+    <event id="fortuneTeller3">
+        <show>You open the tent flap and drop into what appears to be the home of a stereotypical fortune-teller lady.
+        </show>
+        <path ref="fortuneTeller4">I should stay and wait for her to come back.</path>
+        <path ref="road">Nooope.</path>
+    </event>
+    <event id="fortuneTeller4">
+        <show>After a few hours, you realize she probably isn't coming back.</show>
+        <path ref="federation">Okay, now I'm getting nervous.</path>
+    </event>
+    <event id="federation">
+        <show>You take a peek outside. To your surprise, you're surrounded by alien {steed:alien} people from the
+            Intergalactic Federation. One of them is carrying a really {adj} {weapon:alien}, and judging by the
+            expression on his face, it's got your name on it.
+        </show>
+        <path ref="federation3">Fight!</path>
+        <path ref="federation2">Run!</path>
+        <path ref="federation4">Negotiate?</path>
+    </event>
+    <event id="federation2">
+        <show>You're surrounded. You can't just run.</show>
+        <path ref="federation3">Fight!</path>
+        <path ref="summonHero">Call upon the might of {char:hero}!</path>
+        <path ref="cry">Cry</path>
+    </event>
+    <event id="federation3">
+        <show>You size up the {steed:alien}, and on second thought you probably wouldn't stand a chance.</show>
+        <path ref="federation5">Bring it on!</path>
+        <path ref="federation4">Let's hear what they have to say first.</path>
+        <path ref="cry">Cry</path>
+    </event>
+    <event id="federation4">
+        <show>The head {steed:alien} steps forward. "We come to inform you of your violations against the Intergalactic
+            Federation in your undocumented pursuit of {char:nemesis} and his propensity for {evilAct:main}. Under the
+            code of law you are considered a vigilante, and swift action must be taken to..."
+        </show>
+        <path ref="federation5">Eat my {weapon:main}!</path>
+        <path ref="cry">Cry</path>
+    </event>
+    <event id="federation5">
+        <show>The {steed:alien} raises his {weapon:alien} and slams it down onto you, causing unthinkable damage to your
+            entire body.
+        </show>
+        <path ref="federation6">It's not over yet...</path>
+        <path ref="die">Die</path>
+    </event>
+    <event id="federation6">
+        <show>In the blink of an eye, the {steed:alien} people disappear.</show>
+        <path ref="help">Call for help</path>
+        <path ref="die">Concede to the inevitable</path>
+    </event>
+    <event id="settlement">
+        <show>
+            As you approach the settlement, a sign comes into view:
+            <div class="card p-2 mt-5">
+                <h4>{town:main}</h4>
+                <p>{motto:main}</p>
+            </div>
+        </show>
+        <path ref="enterSettlement,enterSettlementLady">Enter {town:main}</path>
+        <path ref="road">This place seems weird; find another settlement</path>
+        <if key="char:sidekick">
+            <path ref="settlementTryAttack">Let's burn it down, {char:sidekick}!</path>
+        </if>
+    </event>
+    <event id="enterSettlement">
+        <show>You walk through {town:main}, taking in the {adj:town} sights.</show>
+        <path ref="settlementHanging">Continue walking</path>
+        <path ref="settlement">Leave {town:main}</path>
+    </event>
+    <event id="settlementHanging">
+        <show>You reach the town square, where many townsfolk are gathered. You avoid eye contact as you make your way
+            through the crowd.
+            At the center of the mass of people sits an old man proclaiming the good works of Cat-Jesus. However, that's
+            not why everyone is gathered.
+            There is a hanging happening today!
+        </show>
+        <path ref="askTownsperson">Talk to a townsperson</path>
+        <path ref="watchHanging">Watch the hanging</path>
+        <if key="char:main" value="Cat-Jesus">
+            <path ref="catCult">Push your way into the crowd and confront the Cat-Jesus guy</path>
+        </if>
+    </event>
+    <event id="watchHanging">
+        <show>You watch as the convict is carted into the square as the crowd admires the {adj:dislike} gallows. You
+            feel morally conflicted, since from a young age you've always disliked {adj:dislike} things.
+        </show>
+        <path ref="hangingHero">Sneak over to the convict</path>
+        <path ref="settlementHanging">I don't dislike {adj:dislike} things THAT much...</path>
+    </event>
+    <event id="hangingHero">
+        <show>You stand face to face with the convict.</show>
+        <path ref="riotStart">Tell him you'll help him but he must help you afterwards</path>
+        <path ref="riotStart">Tell him you'll help him for nothing in return</path>
+        <path ref="prayer">Recite the Cat-Jesus prayer for forgiveness in his honor</path>
+    </event>
+    <event id="prayer">
+        <scene/>
+        <show>"O our lord of all lords the one Cat-Jesus, please take mercy; for we are all but scrawny mites in the
+            presence of your Whiskers and Paws."
+        </show>
+        <path ref="prayer2">Continue</path>
+    </event>
+    <event id="prayer2">
+        <show>"We ask not for your aid, nor for your blessing; but rather, for your forgiveness of our sins; Let us
+            live, so we may better serve the Way as the Way shall be served."
+        </show>
+        <path ref="*">Amen</path>
+        <if key="char:main" value="Cat-Jesus">
+            <path ref="*">Yeah I pray to myself all the time.</path>
+        </if>
+    </event>
+    <event id="riotStart">
+        <show>You've won the man's trust, but now you must act quick!</show>
+        <path ref="riot">Yell incoherently</path>
+        <path ref="riot">Dance like you've never danced before</path>
+        <if key="char:main" value="Cat-Jesus">
+            <path ref="catCult2">Rip your body in two and reveal yourself as Cat-Jesus</path>
+        </if>
+    </event>
+    <event id="riot">
+        <show>The crowd is bewildered and appalled. Some look like they want to kill you and others seem to support
+            you.
+        </show>
+        <path ref="deathTwist">Take the noose off the convict and martyr yourself</path>
+        <path ref="mayor">Recall the rhetorical triangle to win over the entire town</path>
+    </event>
+    <event id="deathTwist">
+        <show>The crowd approaches you with stones with the intent to kill, but that moment, the ground cracks and you
+            are lifted away from the town.
+        </show>
+        <path ref="moonPeople">Revel in your incredible luck</path>
+        <path ref="die">Jump off your patch of ground and plummet into the town</path>
+    </event>
+    <event id="mayor">
+        <show>You are suddenly elected as the mayor of the town for your 'outstanding' and '{adj}' speaking abilities.
+        </show>
+        <path ref="mayor2">That was quick.</path>
+    </event>
+    <event id="mayor2">
+        <show>As the new mayor, it seems the local aristocracy is anxious to welcome you.</show>
+        <path ref="teaParty">Let's get this tea party started.</path>
+    </event>
+    <event id="teaParty">
+        <show>You sit down at a table full of wig-laden noblemen. One by one, they introduce themselves while a servant
+            passes out {food:tea}-flavored tea. All eyes turn to you. "Mayor, it's an _honor_. Please help us get to
+            _know_ you."
+        </show>
+        <path ref="teaParty2">I'm a zany ranger from the {loc:home} badlands and I'm here to stop {char:nemesis} from
+            {evilAct:main}.
+        </path>
+        <path ref="teaParty2">I'm far wealthier than all of you fools.</path>
+        <path ref="teaParty2">I'm the main character from _{title:main}_.</path>
+    </event>
+    <event id="teaParty2">
+        <show>A prominently bearded landlord stands up. "_{int}_ Please, _do_ tell us more. Just for your
+            _consideration_, I order pizza worth more than the likes of you, so remain _modest_."
+        </show>
+        <path ref="teaParty3">You call yourself well off? My underwear is made of silk interlaced with gold. They
+            probably cost more than your wife did.
+        </path>
+        <path ref="nobilityShame">What are those shoes you're wearing? Elf slippers?</path>
+        <path ref="nobilityShame">Nice beard. I bet you have it because you can't afford a razor.</path>
+    </event>
+    <event id="teaParty3">
+        <show>~ The man sits down ~</show>
+        <path ref="teaParty4">Next.</path>
+        <path ref="nobilityShame">Gentlemen, what even is this _{food:tea}_ tea, anyway? Who even makes this stuff?
+        </path>
+    </event>
+    <event id="teaParty4">
+        <show>A fabulously colorful duke stands to interject. His {color} robes whip through the antiquated chamber as
+            he stomps toward you. "My backyard garden was more expensive than your mother's prison bail!"
+        </show>
+        <path ref="teaParty5">My family has been in power for 10,000 years. Your family probably didn't even have a name
+            until you were born, and your lack of propriety immediately disgraced it.
+        </path>
+        <path ref="nobilityFight">Want to fight, buddy?</path>
+        <path ref="nobilityShame">Touché, my friend.</path>
+    </event>
+    <event id="teaParty5">
+        <show>Shouts of physical and psychological pain reverberate through the chamber as everyone starts shouting at
+            the top of their lungs. You hear one man yelling, "Your grandfather was a _petty_ sandwich handler, just
+            like {char:nemesis}!"
+        </show>
+        <path ref="teaParty6">Wait a minute. {char:nemesis}?</path>
+    </event>
+    <event id="teaParty6">
+        <show>"Yes, and if he's your friend we're never talking to him again."</show>
+        <path ref="teaParty7">No, he's actually my enem...nevermind. How do you know him?</path>
+    </event>
+    <event id="teaParty7">
+        <show>The noblemen settle down again, brushing themselves off and retrieving fallen wigs from under tables. "Of
+            _course_ we know him. How _else_ do you think we made all this money? There's good business to be made when
+            you're {evilAct:main}."
+        </show>
+        <path ref="teaParty8">You've all been {evilAct:main}?</path>
+    </event>
+    <event id="teaParty8">
+        <show>"Yes it's quite profitable these days. Especially in {loc:nemesis}."</show>
+        <path ref="teaParty10">Where is {char:nemesis}? I have a score to settle.</path>
+        <path ref="businessVenture">Get me in on this deal.</path>
+    </event>
+    <event id="teaParty9">
+        <show>"Sir, you might _consider_ the arrangement of a meeting with {char:nemesis} in {loc:nemesis}. He tends to
+            move from place to place, but his headquarters may be found on the outskirts of {town:nemesis}"
+        </show>
+        <path ref="teaParty10">Where is {char:nemesis}? I have a score to settle.</path>
+        <path ref="businessVenture">Get me in on this.</path>
+    </event>
+    <event id="nobilityShame">
+        <scene/>
+        <show>~ The nobility laughs at your stupidity ~</show>
+        <path ref="*">Suck it up</path>
+        <path ref="cry">Weep</path>
+        <path ref="die">Die of shame</path>
+        <if key="char:main" value="Cat-Jesus">
+            <path ref="nobilityVaporize">Remind them who you are</path>
+        </if>
+    </event>
+    <event id="nobilityVaporize">
+        <show>A bolt of fire streaks through the tearoom, vaporizing the nobleman where he stands.</show>
+        <path ref="nobilityFight">Flee</path>
+        <path ref="nobilityFight">Stand your ground</path>
+    </event>
+    <event id="nobilityFight">
+        <show>You step forward and deck the nobleman in the face. The congregation roars in fury, and you quickly
+            suffocate under the weight of a thousand plump aristocrats.
+        </show>
+        <path ref="die">Ah.</path>
+    </event>
+    <event id="businessVenture">
+        <show>"Ah. Yes, perhaps we could do with an accountant."</show>
+        <path ref="businessVenture2">Nothing against accountants, but are there any other options?</path>
+        <path ref="businessVenture3">Sounds good!</path>
+    </event>
+    <event id="businessVenture2">
+        <show>"No."</show>
+        <path ref="businessVenture3">Dang.</path>
+    </event>
+    <event id="businessVenture3">
+        <show>The noblemen lead you to their carriage, pushing some crates out of the way to give you a place to seat
+            yourself.
+        </show>
+        <path ref="businessVenture4">Smirk sleazily</path>
+        <path ref="businessVenture4">Smirk uncomfortably</path>
+        <path ref="businessVenture4">Look onward dutifully</path>
+    </event>
+    <event id="catCult">
+        <show>Squeezing between two {adj} ladies and a quite {adj} grump, you step forward and announce your presence to
+            the old man.
+        </show>
+        <path ref="catCult2">Say nothing</path>
+        <path ref="catCult2">I'm Cat-Jesus!</path>
+    </event>
+    <event id="catCult2">
+        <show>The man stares intently at your furry pelt and {adj:main} whiskers. "It can't be."</show>
+        <path ref="catCult3">Yeah it can.</path>
+        <path ref="catCult2">Bow before me, for I spare only those who pay homage to My great form.</path>
+    </event>
+    <event id="catCult3">
+        <show>He wails and prostrates himself in submission to your divine presence.</show>
+        <path ref="catCult4">This whole 'being a god' thing ain't too bad afer all.</path>
+    </event>
+    <event id="catCult4">
+        <show>A mischevious teenager smirks from the sidelines. "He only pretended to believe in you so people would
+            give him money."
+        </show>
+        <path ref="catCult5">Heresy! Become smitten!</path>
+        <path ref="catCultHelp">Eh, I'll spare you if you help me out.</path>
+    </event>
+    <event id="catCultHelp">
+        <show>He takes advantage of your hesitation and dives headfirst into the crowd of onlookers.</show>
+        <path ref="catCult7">Strike him down</path>
+        <path ref="run">Peace out of here</path>
+    </event>
+    <event id="catCult5">
+        <show>A bolt of lightning strikes the gallows, spraying the crowd with sharp chips of wood. The old man looks
+            up, stares for a second, and jumps to his feet. "Forget my old life, I'm rolling with Cat-Jesus now!"
+        </show>
+        <path ref="catCult6">Eh, what's a god without his devotee.</path>
+        <path ref="catCult7">Not so fast, unbeliever.</path>
+    </event>
+    <event id="catCult6">
+        <assign key="char:sidekick" value="Cat-Cult Elder"/>
+        <show>You explain to the old man that {char:nemesis} is {evilAct:main}, and must be stopped. He looks on,
+            nodding vaguely as though distracted by your {adj:main} godliness.
+        </show>
+        <path ref="road">Enough talk - let's move, {char:sidekick}.</path>
+        <path ref="catCult7">You can be my sidekick...IN THE AFTERLIFE!</path>
+    </event>
+    <event id="catCult7">
+        <assign key="char:sidekick" value="Ghost of the {char:sidekick}"/>
+        <show>He disappears in a spark of bright embers, and you're left surrounded by a crowd of apprehensive
+            onlookers. They start muttering to one another saying things like, "Cat-Jesus is all talk, no stock. Let's
+            take him down! He can't win if we swarm him with our {adj} mass of humanity."
+        </show>
+        <path ref="run">Agree</path>
+        <path ref="die">Disagree</path>
+    </event>
+    <event id="askTownsperson">
+        <show>You turn to your right and see a {adj:townsperson} townsperson. They give you a wild-eyed stare.</show>
+        <path ref="askTownsperson2">Strike up conversation</path>
+        <path ref="watchHanging">Turn back to the hanging and try to ignore them</path>
+    </event>
+    <event id="askTownsperson2">
+        <show>You open your mouth to speak, but the townsperson is quicker. "Good day! My name is {char:townsperson}! I
+            have {range:7-15} children and no life!" They continue their wild-eyed stare.
+        </show>
+        <path ref="askTownsperson3">Yes, um... Why is there a hanging today?</path>
+        <path ref="excursion">{char:townsperson}, I need your help. Someone is going around {evilAct:main}, and we need
+            to do something about it!
+        </path>
+    </event>
+    <event id="askTownsperson3">
+        <show>"There is a man who touched the road! NO ONE CAN TOUCH THE ROAD!"</show>
+        <path ref="askTownsperson4">That's illegal here?</path>
+    </event>
+    <event id="askTownsperson4">
+        <show>You back up slowly and make your way through the crowd. You want to leave this place. As you walk back
+            through the settlement,
+            now desolate because of the hanging, you spot a pillar of smoke over the horizon.
+        </show>
+        <path ref="spaceship">Go to the smoke</path>
+        <path ref="settlement">Find another settlement</path>
+    </event>
+    <event id="spaceship">
+        <show>As you approach the source of the smoke, you become horrified. Partially buried in the ground
+            in front of you lies a spaceship. The cockpit blinks and chirps, but there is no life source to be found.
+        </show>
+        <path ref="spaceship2">Examine closer</path>
+        <path ref="settlement">Go back into town</path>
+    </event>
+    <event id="spaceship2">
+        <assign key="weapon:spaceship" value="{weapon}"/>
+        <show>You step closer and look inside the cockpit. You see a folded piece of paper and a {weapon:spaceship}.
+        </show>
+        <path ref="spaceship3">Read note</path>
+        <path ref="getSpaceshipWeapon">Pick up the {weapon:spaceship}</path>
+    </event>
+    <event id="getSpaceshipWeapon">
+        <assign key="weapon:main" value="{weapon:spaceship}"/>
+        <show>You heft your new {weapon:spaceship}.</show>
+        <path ref="spaceship3">Read the note</path>
+    </event>
+    <event id="spaceship3">
+        <show>
+            <div class="card text-left p-5">{char:main}, you are our only hope.
+                <br/>
+                Please use this spaceship and meet us at this Intergalactic Coordinate Point:
+                <br/>
+                23532.1355.134 15555.1746.9516
+                <br/>
+                <br/>
+                P.S. We can help you find {char:nemesis}.
+            </div>
+        </show>
+        <path ref="spaceship4">Board the spaceship</path>
+        <path ref="road">Walk away and pretend this never happened</path>
+    </event>
+    <event id="spaceship4">
+        <show>You climb into the cockpit and realize you don't have the slightest clue what you're doing.</show>
+        <path ref="hissing">Activate the hypothermal thrust contractors</path>
+        <path ref="pow">Increment the pseudo-cyclical strut duct</path>
+        <path ref="spaceship5">Fire the rotational axis power reducer</path>
+        <path ref="darken">Activate the photovoltaic darkening system</path>
+    </event>
+    <event id="hissing">
+        <scene/>
+        <show>You hear a hissing sound.</show>
+        <path ref="*">That doesn't seem right.</path>
+    </event>
+    <event id="splash">
+        <scene/>
+        <show>You hear a splash.</show>
+        <path ref="*">That doesn't seem right.</path>
+    </event>
+    <event id="pow">
+        <scene/>
+        <show>As soon as you touch the controls, you hear a loud "POW!"</show>
+        <path ref="*">That doesn't seem right.</path>
+    </event>
+    <event id="spaceship5">
+        <show>You hear a quiet whirring sound. Sounds correct to you.</show>
+        <path ref="pow,hissing">Upend the horizontal alignment gearing overvolter</path>
+        <path ref="spaceship6">Realign the Jupiter Guidance System</path>
+        <path ref="pow,splash">Concentrate the washer fluid</path>
+        <path ref="pow">Charge the flux capacitor</path>
+    </event>
+    <event id="spaceship6">
+        <show>The Jupiter Guidance System comes to life. You enter the Intergalactic coordinates.</show>
+        <path ref="spaceship7">Connect the CAT17 cable to the locomotive transitional hyperspace drive</path>
+        <path ref="pow,hissing">Defragment the crash rotator</path>
+        <path ref="pow,hissing">Cancel the omnipotent gravity stretcher</path>
+        <path ref="hissing">Fumble with the prograde directional indicator</path>
+    </event>
+    <event id="spaceship7">
+        <show>The CAT17 cable seems to connect the guidance system to the LTHD. You might have to remove it later.
+        </show>
+        <path ref="spaceship8">Turn the dial labeled "415-DFNR"</path>
+        <path ref="pow">Hit the four dimensional horizontal display system</path>
+        <path ref="pow,hissing">Translate the object-oriented star RAM</path>
+        <path ref="splash">Kill the gyroscopic orientation meter</path>
+    </event>
+    <event id="spaceship8">
+        <show>You turn the dial and it doesn't seem to do anything. Better than making some terrible noise though.
+            It occurs to you that the label "DFNR" might stand for "Dial For No Reason."
+        </show>
+        <path ref="pow,hissing">Reduce the waste creation systems</path>
+        <path ref="pow">Tap the "Delete Random Planet" button</path>
+        <path ref="spaceship9">Run the pre-flight simulation</path>
+        <path ref="pow,hissing">Hang the zero-division float computer</path>
+    </event>
+    <event id="spaceship9">
+        <show>As the pre-flight simulation runs, you twiddle your thumbs and wait for it to complete. After a couple of
+            minutes, the hyperspace drive roars to life!
+        </show>
+        <path ref="spaceship10">Pull back on the joystick</path>
+        <path ref="spaceship10">Move up the throttle</path>
+        <path ref="hissing">Adjust the flaps for takeoff</path>
+        <path ref="laseredToDeath">Fire the anti-personnel cockpit lasers</path>
+    </event>
+    <event id="spaceship10">
+        <show>We have liftoff! Somehow you managed to get the spaceship running. What do you want to do now?</show>
+        <path ref="spaceship11">Go to space, obviously.</path>
+    </event>
+    <event id="spaceship11">
+        <show>You activate the Jupiter Guidance System and the spaceship points towards the Intergalactic Coordinate
+            Point. The cockpit display says _hyperspace drive charging_.
+            After a few moments, the spaceship suddenly accelerates rapidly.
+        </show>
+        <path ref="spaceship12">I may have peed myself a bit.</path>
+    </event>
+    <event id="spaceship12">
+        <show>You sit back and relax after a few moments of pure terror. The humming of the hyperspace drive is
+            hypnotizing.
+        </show>
+        <path ref="spaceship13">I might take a little nap...</path>
+    </event>
+    <event id="spaceship13">
+        <show>You fall asleep quickly. You're enjoying your little nap until you're rudely awoken by red lights
+            flashing, alarms blaring, and a voice repeating "Emergency hyperspace drop imminent." You sit up quickly and
+            see a small, circular spaceship with a beam going to your ship.
+        </show>
+        <path ref="spaceship15">I accept my fate.</path>
+        <path ref="escapeShip">Try to escape!</path>
+    </event>
+    <event id="escapeShip">
+        <show>You try to increase your throttle, but it's no use - not only is the tractor beam very strong, your
+            piloting skills are lacking.
+        </show>
+        <path ref="spaceship15">Okay, now I accept my fate.</path>
+    </event>
+    <event id="spaceship15">
+        <show>As your ship slows to a stop, the other ship comes near and docks onto your ship. Two figures climb out of
+            the ship and enter yours.
+        </show>
+        <path ref="spaceship16">Go to meet them</path>
+        <path ref="hide">Try to hide</path>
+        <path ref="rickKills">Fight them!</path>
+    </event>
+    <event id="hide">
+        <show>You try to find somewhere to hide, but this is a small spaceship.</show>
+        <path ref="hide2">Hide in the cargo bay</path>
+        <path ref="hide3">Hide behind the seat</path>
+        <path ref="spaceship16">Go and meet them</path>
+    </event>
+    <event id="hide2">
+        <show>The cargo bay is the largest spot on this ship, maybe you can hide there. You run to the cargo bay and
+            cower in fear.
+        </show>
+        <path ref="hide4">Continue hiding</path>
+    </event>
+    <event id="hide3">
+        <show>You try to hide behind the seat, but it's fairly small. You get the feeling you look really dumb.</show>
+        <path ref="hide5">Continue hiding</path>
+        <path ref="spaceship16">Give up and meet them</path>
+    </event>
+    <event id="hide4">
+        <show>You stay as still and quiet and possible. Suddenly, there's a loud *ZAP* and the cargo door flies open.
+            A fairly old man with blue spiky hair and something leaking out of his mouth - you're not sure if it's spit
+            or vomit - stands in front of you.
+            "You think you can hide in the cargo bay? Everyone hides in the cargo bay, you idiot! It's the first place
+            you look! What are you, 5? Have you never been to space before,
+            you tiny stupid animal?! And speaking of stupid, do you think I'm stupid? Why would a spaceship be flying
+            around WITHOUT SOMEONE IN IT??" You are terrified. You notice a short boy wearing an orange shirt standing
+            behind him.
+        </show>
+        <path ref="spaceship17">Why are you here?</path>
+    </event>
+    <event id="hide5">
+        <show>You stay as still and quiet and possible. Suddenly, a fairly old man with blue spiky hair and something
+            leaking out of his mouth - you're not sure if it's spit or vomit -
+            walks up behind you and shouts, "HEY!! What are you, retarded? You think you can hide behind a freaking
+            chair?? What is WRONG with you? Do you think you're some sort of midget or something??
+            Well I have news for you, buddy! You're not! So get up and look at me LIKE A MAN!" You are terrified. You
+            notice a short boy wearing an orange shirt standing behind him.
+        </show>
+        <path ref="spaceship17">Why are you here?</path>
+    </event>
+    <event id="spaceship16">
+        <show>You walk up to the point where they docked with the ship, and wait for them to show up. Eventually a
+            fairly old man with blue spiky hair and something leaking out of his mouth - you're not sure if it's spit or
+            vomit - and a short boy with an orange shirt
+            walk up to you. The man looks angry and the boy seems scared. You're not sure if he's scared or you or the
+            blue-haired man.
+        </show>
+        <path ref="spaceship17">Why did you stop my ship?</path>
+    </event>
+    <event id="spaceship17">
+        <show>"This isn't your ship, is it?" The man says, oddly calm. You shake your head no. "I know it's not your
+            ship, because *Burrrrp* it's MINE!" he shouts.
+        </show>
+        <path ref="spaceship18">I found this ship and it had a note addressed to me in it.</path>
+    </event>
+    <event id="spaceship18">
+        <show>He gives you a confused look. "Let me see it," he says.</show>
+        <path ref="spaceship19">Okay, here you go.</path>
+        <path ref="rickKills">No! You'll never take me alive!</path>
+    </event>
+    <event id="spaceship19">
+        <show>He reads the note. "We need to get you out of here! This letter is a trap from the Intergalactic
+            Federation!" The boy looked apprehensive. "Aw jeez Grandpa, this isn't really our problem, do we really want
+            to get involved in this?"
+        </show>
+        <path ref="spaceship20">Wait, why is the Intergalactic Federation after me?</path>
+    </event>
+    <event id="spaceship20">
+        <show>"The Intergalactic Federation goes after anyone that threatens their rule. If they're going after you, you
+            must be an okay guy." The blue-haired man sits in the pilot seat. The boy jumps in on the left side, and you
+            squeeze in the middle. "We need to get you to a planet outside of Intergalactic Federation jurisdiction,"
+            said the blue-haired man.
+        </show>
+        <path ref="spaceship21">What are your names?</path>
+        <path ref="spaceship22">Why are you helping me?</path>
+    </event>
+    <event id="rickKills">
+        <show>You try to attack them with your {weapon:main}, but it's no use. The blue-haired man pulls out a laser gun
+            and shoots you much faster than you could have imagined. Your brain is vaporized on the spot.
+        </show>
+        <path ref="die">Ah well.</path>
+    </event>
+    <event id="laseredToDeath">
+        <show>The instant you press the button, lasers fire from the ceiling and vaporize you. Why is that even a
+            button?
+        </show>
+        <path ref="die">I guess I should have known based on the name...</path>
+    </event>
+    <event id="darken">
+        <show>When you activate the system, the windshield darkens.</show>
+        <path ref="spaceship4">I should have known.</path>
+    </event>
+    <event id="excursion">
+        <show>The townsperson stares at you in {adj} horror. "How could they? We must act!"</show>
+        <path ref="excursion2">Yes, {char:townsperson}. Follow me!</path>
+    </event>
+    <event id="excursion2">
+        <show>"Lead the way, {char:main}."</show>
+        <path ref="excursion3">Alrighty, let's move; we need to to hit the road.</path>
+    </event>
+    <event id="excursion3">
+        <show>"Wait, no! Don't touch the road!"</show>
+        <path ref="askTownsperson3">Touch the road</path>
+        <path ref="excursion4">Oh. Okay.</path>
+    </event>
+    <event id="excursion4">
+        <show>"I'll tell you what. If you don't drag me into this, I won't let anyone know you were planning to touch
+            the road. But you'd better scurry as fast as your {adj:main} legs can carry you. Got it?"
+        </show>
+        <path ref="askTownsperson3">Touch the road</path>
+        <path ref="road">Well in that case, I'm out of here.</path>
+        <path ref="excursion5">If I can't touch the road, could we just ride a {steed:main}?</path>
+    </event>
+    <event id="excursion5">
+        <show>"Yes, that's perfectly fine and legal. I'll follow your lead."</show>
+        <path ref="excursionRide">Go figure. Now let's ride!</path>
+        <if key="food:main" invert="true">
+            <path ref="packFood">How about we at least pack some food first.</path>
+        </if>
+    </event>
+    <event id="excursionRide">
+        <show>You each jump on your respective {steed:main} and follow the road west of {town:main}.</show>
+        <path ref="excursionRide2">Keep riding</path>
+    </event>
+    <event id="excursionRide2">
+        <show>After a while, you start to get hungry.</show>
+        <if key="food:main">
+            <path ref="excursionRide3">Eat the {food:main}</path>
+        </if>
+        <path ref="roadsideFood">Scrounge for food</path>
+        <path ref="help">Call for help while you slowly starve</path>
+    </event>
+    <event id="excursionRide3">
+        <assign key="food:main" value=""/>
+        <show>After that nourishing albeit {adj} meal, you and {char:sidekick} prepare to remount and continue on your
+            expedition.
+        </show>
+        <path ref="excursionRide4">Consult your {adj:map} map</path>
+    </event>
+    <event id="excursionRide4">
+        <show>It seems as though you were traveling in the opposite direction this whole time. {char:sidekick} leans
+            over and asks, "{char:main}, but where are we even going in the first place?"
+        </show>
+        <path ref="excursionRide5">Answer evasively</path>
+    </event>
+    <event id="excursionRide5">
+        <show>"Well, {char:sidekick}, I have this feeling we're heading somewhere very important." {char:sidekick}
+            stares you square in the eye. "Huh?"
+        </show>
+        <path ref="excursionRide6">Yeah okay let's just head back.</path>
+    </event>
+    <event id="excursionRide6">
+        <assign key="char:sidekick" value="{char:townsperson}"/>
+        <show>You finally reach {town:main} once again. {char:sidekick} slides off his horse, exhausted, but then trips
+            and lands face-first on the road. "I've touched the road..." He stares forward in {adj} stock. "Well, now
+            that I'm a criminal, I'd better stick with you, {char:main}. Live the rogue life, you know?"
+        </show>
+        <path ref="enterSettlement">Sure thing.</path>
+        <path ref="murderSidekick">YOU TOUCHED THE ROAD! DIE!</path>
+    </event>
+    <event id="murderSidekick">
+        <assign key="trait:cruel" value="true"/>
+        <assign key="char:sidekick" value=""/>
+        <show>You violently stab {char:sidekick} with your {weapon:main}.</show>
+        <path ref="settlement">I'm a vigilante, b***.</path>
+    </event>
+    <event id="packFood">
+        <scene/>
+        <assign key="food:option1" value="{food}"/>
+        <assign key="food:option2" value="{food}"/>
+        <show>You find a bit of {food:option1} as well as {food:option2}.</show>
+        <path ref="packOption1">Let's go with the {food:option1}</path>
+        <path ref="packOption2">I'd honestly rather take the {food:option2}</path>
+    </event>
+    <event id="packOption1">
+        <assign key="food:main" value="{food:option1}"/>
+        <show>You go ahead and pack the {food:option1}.</show>
+        <path ref="*">Can't wait to eat that.</path>
+    </event>
+    <event id="packOption2">
+        <assign key="food:main" value="{food:option2}"/>
+        <show>You go ahead and pack the {food:option2}.</show>
+        <path ref="*">Can't wait to eat that.</path>
+    </event>
+    <event id="enterSettlementLady">
+        <show>As you enter the {adj} town of {town:main}, a {adj:lady} lady runs up to you in a panic. "{char:main}!"
+            she exclaims.
+        </show>
+        <path ref="talkToLady">Yes, {adj:lady} lady?</path>
+        <path ref="enterSettlement">Ignore lady</path>
+        <if key="char:main" value="Cat-Jesus">
+            <path ref="vaporizeLady">DON'T MESS WITH CAT-JESUS!</path>
+        </if>
+    </event>
+    <event id="talkToLady">
+        <show>"My whole life I've been dreaming of meeting you! You're my hero!" As she babbles on about your {adj:main}
+            hair and {adj:dislike} face, you notice hear reaching behind her back slowly.
+        </show>
+        <path ref="askLady">Ask her about what she has behind her back</path>
+        <path ref="grovelLady">Allow her to continue groveling and pretend you didn't notice</path>
+        <path ref="grovelLady">Why is this town's motto "{motto:main}"</path>
+    </event>
+    <event id="grovelLady">
+        <show>The {adj:lady} lady goes on and on...</show>
+        <path ref="askLady">Ask her about what she has behind her back</path>
+        <path ref="die">Die of boredom</path>
+    </event>
+    <event id="askLady">
+        <show>"What? Nothing," she says, and continues groveling.</show>
+        <path ref="ladyStab">Believe her blatant lie</path>
+        <path ref="askLady2">Ask her again more forcefully</path>
+        <path ref="killLady">Punch her lights out like the horrible human you are</path>
+    </event>
+    <event id="askLady2">
+        <show>"Really, I have nothing," as she continues sharpening a knife behind her back.</show>
+        <path ref="getKnife">Grab the knife</path>
+        <path ref="enterSettlement">Run away</path>
+        <path ref="die">Sacrifice yourself to the gods of {adj:lady} ladies</path>
+    </event>
+    <event id="getKnife">
+        <show>You try to grab the knife but she stabs you through the hand before you can get a grip.</show>
+        <path ref="removeKnife">Attempt to remove knife from your hand</path>
+        <path ref="suffocateLady">Stick your fingers up her nostils to suffocate her</path>
+        <path ref="die">Sacrifice yourself to the gods of {adj:lady} ladies</path>
+    </event>
+    <event id="removeKnife">
+        <show>You try to remove the knife, but as you pull your hand away she stabs your other hand in a
+            shish-kabob-esque fashion. "YOU SHALL PAY FOR WHAT YOU HAVE DONE," she proclaims in an oddly deep voice.
+        </show>
+        <path ref="cry">Cry</path>
+        <path ref="die">Sacrifice yourself to the gods of {adj:lady} ladies</path>
+    </event>
+    <event id="suffocateLady">
+        <show>You stick your fingers as far up her nostrils as they can fit - looks like around the second knuckle.
+            Impressive.
+        </show>
+        <path ref="removeHand">Remove hand while she's distracted</path>
+        <path ref="die">Sacrifice yourself to the gods of {adj:lady} ladies</path>
+    </event>
+    <event id="vaporizeLady">
+        <show>A super-concentrated crepuscular ray strikes the {adj:lady} lady, instantly vaporizing her.</show>
+        <path ref="enterSettlement">Act like nothing happened</path>
+    </event>
+    <event id="removeHand">
+        <show>You successfully remove your hand from the knife. It's bleeding profusely, but at least there's not a
+            knife in it.
+        </show>
+        <path ref="killLady">Try to stick your fingers farther up the {adj:lady} lady's nostrils</path>
+        <path ref="killLady">Punch {adj:lady} lady in the face</path>
+        <path ref="die">Sacrifice yourself to the gods of {adj:lady} ladies</path>
+    </event>
+    <event id="killLady">
+        <show>Congratulations! That was just forceful enough to render the {adj:lady} lady a nonissue.</show>
+        <path ref="enterSettlement">Bandage hand and wander the town</path>
+        <path ref="help">Call for help</path>
+    </event>
+    <event id="ladyStab">
+        <show>You were stabbed by the {adj:lady} lady.</show>
+        <path ref="die">I accept my fate.</path>
+    </event>
+    <event id="settlementTryAttack">
+        <scene/>
+        <show>{char:sidekick} looks at you for a full second and says, "What?"</show>
+        <if key="trait:cruel">
+            <path ref="settlementAttack">You heard me.</path>
+        </if>
+        <path ref="*">Nevermind.</path>
+    </event>
+    <event id="settlementAttack">
+        <assign key="trait:cruel" value="true"/>
+        <show>You heft your {weapon:main} while your sidekick, {char:sidekick}, twirls his {weapon:sidekick}.</show>
+        <path ref="settlementAttack2">Procure gasoline</path>
+    </event>
+    <event id="settlementAttack2">
+        <show>You walk over to the nearest gas station. A particularly {adj} man leans against the nearest pump, idly
+            refueling his {adj:vehicle} vehicle.
+        </show>
+        <path ref="settlementAttack3">Can we please borrow your pump?</path>
+        <path ref="settlementAttack4">Get out of here, and we'll burn your house down!</path>
+    </event>
+    <event id="settlementAttack3">
+        <show>The man yawns and continues to refuel his {adj:vehicle} vehicle.</show>
+        <path ref="settlementAttack4">Brandish your {weapon:main}</path>
+        <path ref="settlementAttack4">Let {char:sidekick} threaten him instead</path>
+    </event>
+    <event id="settlementAttack4">
+        <show>~ The man runs away ~</show>
+        <path ref="run">Chase him down</path>
+        <path ref="settlementAttack5">Let's start by torching that {adj:vehicle} vehicle.</path>
+        <path ref="settlementAttack8">Burn it all!</path>
+    </event>
+    <event id="settlementAttack5">
+        <show>You start pouring gasoline everywhere as {char:sidekick} readies his flamethrower. "That's right, I found
+            a flamethrower. And it also has a bayonet!"
+        </show>
+        <path ref="settlementAttack7">Cool. Light 'er up.</path>
+        <path ref="settlementAttack6">Where? I want one too!</path>
+    </event>
+    <event id="settlementAttack6">
+        <show>"It's the only one. I found it. It's mine." {char:sidekick} hugs the flamethrower.</show>
+        <path ref="settlementAttack7">Gimme!</path>
+        <path ref="settlementAttack8">Fine. then you do the honors.</path>
+    </event>
+    <event id="settlementAttack7">
+        <assign key="weapon:main" value="flamethrower bayonet"/>
+        <assign key="char:sidekick" value=""/>
+        <show>~ You wrestle the flamethrower from {char:sidekick} ~</show>
+        <path ref="settlementAttack8">Continue burning down the settlement</path>
+        <path ref="run">Take the flamethrower and run</path>
+    </event>
+    <event id="settlementAttack8">
+        <show>The {adj:vehicle} vehicle roars into flame as you light the gasoline. Terrified screams emanate from the
+            town square as the entire gas station explodes in a giant fireball of {adj} doom.
+        </show>
+        <path ref="settlementAttack9">Continue burning down the settlement</path>
+    </event>
+    <event id="settlementAttack9">
+        <show>Shrieking maniacally, you run through town and set buildings ablaze left and right.</show>
+        <path ref="settlementAttack10">Continue burning down the settlement</path>
+    </event>
+    <event id="settlementAttack10">
+        <show>Finally, as the embers settle and the sky twinkles with the smoke and ash of utter desolation, your ethics
+            get the better of you and you feel like running away before you fully comprehend about what you've done.
+        </show>
+        <path ref="run">Run away</path>
+        <path ref="road">Walk away - you're too cool to run.</path>
+    </event>
+    <event id="default">
+        <scene/>
+        <show>You suddenly find yourself in a Matrix-like room. The developers of the game are standing around you.
+            Inexplicably, they have all have Australian accents.
+        </show>
+        <path ref="*">Nope, nope, nope.</path>
+        <path ref="default2">Huh?</path>
+    </event>
+    <event id="default2">
+        <show>Ryan, Nate, and Steph also look surprised that you're here. "Slow down there chap. We haven't finished the
+            bloody game yet."
+        </show>
+        <path ref="*">Return to your quest</path>
+        <path ref="die">Die peacefully</path>
+        <path ref="default3">Teach them to fear you</path>
+    </event>
+    <event id="default3">
+        <show>The developers begin murmuring in unison. The ground rumbles, and the most {adj:nemesis} hand you've ever
+            seen emerges from a portal in the middle of the room.
+        </show>
+        <path ref="default4">{char:nemesis}?</path>
+    </event>
+    <event id="default4">
+        <show>{char:nemesis} steps out of the portal and stares you dead in the eye. "You thought you could stop me from
+            {evilAct:nemesis}. {int:nemesis}"
+        </show>
+        <path ref="default5">Stare back</path>
+        <path ref="default6">Throw a punch</path>
+    </event>
+    <event id="default5">
+        <show>You stare at each other for a while. Eventually, {char:nemesis} picks up his {weapon:nemesis} and strolls
+            toward you.
+        </show>
+        <path ref="default6">Accept your fate</path>
+        <path ref="defaultRun">Run</path>
+    </event>
+    <event id="defaultRun">
+        <show>As you turn around, the developers freeze you in place with a quick snapplause.</show>
+        <path ref="default6">Of course.</path>
+    </event>
+    <event id="default6">
+        <show>{char:nemesis} picks you up and snaps you in twain.</show>
+        <path ref="die">Bleed out</path>
+        <if key="char:main" value="Cat-Jesus">
+            <path ref="die">Ascend into Cat-Heaven</path>
+        </if>
+    </event>
 </story>

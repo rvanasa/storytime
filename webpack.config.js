@@ -30,6 +30,9 @@ var config = {
 		}, {
 			test: /\.(png|jpg)$/,
 			loader: 'file',
+		}, {
+			test: /\.json$/,
+			loader: 'json',
 		}],
 	},
 	plugins: [
@@ -43,6 +46,9 @@ var config = {
 		}),
 		new ExtractTextPlugin('[name].[hash].css')
 	],
+	node: {
+		fs: 'empty',
+	},
 };
 
 module.exports = config;
