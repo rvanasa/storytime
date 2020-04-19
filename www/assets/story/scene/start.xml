@@ -410,7 +410,6 @@
         <path ref="die">Well, shucks.</path>
     </event>
     <event id="shootBird">
-        <assign key="trait:cruel" value="true"/>
         <show>~ The bird plummets to the ground ~</show>
         <path ref="birdNote">I'm a terrible person.</path>
     </event>
