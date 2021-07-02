@@ -1,7 +1,7 @@
 {
   "name": "storytime-webapp",
   "version": "0.1.0",
-  "description": "It's Storytime! A decentralized procedural choose-your-own-adventure platform",
+  "description": "It's Storytime! A procedural choose-your-own-adventure",
   "author": "Ryan Vandersmith <ryanvandersmith@gmail.com>",
   "dependencies": {
     "bluebird": "^3.5.0",
