@@ -861,9 +861,9 @@
         <show>The noblemen lead you to their carriage, pushing some crates out of the way to give you a place to seat
             yourself.
         </show>
-        <path ref="businessVenture4">Smirk sleazily</path>
-        <path ref="businessVenture4">Smirk uncomfortably</path>
-        <path ref="businessVenture4">Look onward dutifully</path>
+        <path ref="">Smirk sleazily</path>
+        <path ref="">Smirk uncomfortably</path>
+        <path ref="">Look onward dutifully</path>
     </event>
     <event id="catCult">
         <show>Squeezing between two {adj} ladies and a quite {adj} grump, you step forward and announce your presence to
