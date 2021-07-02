@@ -140,7 +140,7 @@
     </event>
     <event id="steedSidekick">
         <assign key="char:sidekick" value="{char:steed} the {steed:main}-man"/>
-        <show>I am honored to quest by your side, as equals.</show>
+        <show>"I am honored to quest by your side, as equals."</show>
         <path ref="steedKick">You're still my {adj:steed} steed.</path>
     </event>
     <event id="steedDismount">
