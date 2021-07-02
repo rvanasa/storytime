@@ -1275,7 +1275,7 @@
     </event>
     <event id="talkToLady">
         <show>"My whole life I've been dreaming of meeting you! You're my hero!" As she babbles on about your {adj:main}
-            hair and {adj:dislike} face, you notice hear reaching behind her back slowly.
+            hair and {adj:dislike} face, you notice her reaching behind her back slowly.
         </show>
         <path ref="askLady">Ask her about what she has behind her back</path>
         <path ref="grovelLady">Allow her to continue groveling and pretend you didn't notice</path>
